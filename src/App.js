@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar/Navbar';
-import Sandbox from './components/Sandbox/Sandbox';
+import Todo from './components/Todo/Todo';
 
 class App extends Component {
   render() {
     return (
       <div>
         <Navbar />
-        <Sandbox />
+        <Todo />
       </div>
     );
   }
