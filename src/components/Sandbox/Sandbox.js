@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const List = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #bbb;
   margin: 2rem auto;
   padding: 2rem;
   width: 500px;
+  box-shadow: 3px 3px 15px #bbb;
 `;
 
 const H1 = styled.h1`
@@ -20,10 +20,13 @@ const Item = styled.div`
   justify-content: space-between;
   width: 300px;
   height: 50px;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   border: 1px solid #bbb;
   user-select: none;
 
+  :hover {
+    box-shadow: 3px 3px 15px 2px #bbb;
+  }
 `;
 
 const Text = styled.div`
@@ -115,13 +118,13 @@ class Sandbox extends React.Component {
     ));
     
     return (
-      <List>
+      <Container>
         <H1>Sandbox TODO List</H1>
         {todoList.length > 0 ? todoList : 'No items on the list'}
         <Button
           disabled={this.state.todoList.length === 0}
         >Remoe All</Button>
-      </List>
+      </Container>
     )
   }
 }

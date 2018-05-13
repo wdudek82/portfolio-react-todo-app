@@ -35,7 +35,7 @@ const navbar = (props) => (
     <Brand>Logo</Brand>
     <RightMenu>
       <p><a href="/">Todo List</a></p>
-      <p><a href="/help">Help</a></p>
+      <p><a href="/about">About</a></p>
       <p><a href="/logout">Log Out</a></p>
     </RightMenu>
   </Nav>
