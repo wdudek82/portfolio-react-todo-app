@@ -1,6 +1,7 @@
 import React from 'react';
 
-import ButtonC from '../UI/Button/Button';
+import TodoItem from './TodoItem/TodoItem';
+import Button from '../UI/Button/Button';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -15,59 +16,6 @@ const Container = styled.div`
 
 const H1 = styled.h1`
   margin: 0 0 1rem 0;
-`;
-
-const Item = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 300px;
-  height: 50px;
-  margin: 0.5rem 0;
-  border: 1px solid #bbb;
-  user-select: none;
-
-  :hover {
-    box-shadow: 3px 3px 15px 2px #bbb;
-  }
-`;
-
-const Text = styled.div`
-  display: flex;
-  align-items: center;
-  color: ${props => props.completed ? '#bbb' : '#000'};
-  text-decoration: ${props => props.completed ? 'line-through' : 'none'};
-  width: 100%;
-  height: 100%;
-  padding: 0 1rem;
-`;
-
-const Delete = styled.span`
-  margin: 0 0.1rem;
-  font-size: 0.8rem;
-  height: 0;
-
-  :hover {
-    cursor: pointer;
-    font-weight: bold;
-  }
-`;
-
-const Button = styled.button`
-  margin-top: 1rem;
-  background: none;
-  border: 1px solid #bbb;
-  border-radius: 5%;
-  padding: 0.7rem;
-  outline: none;
-
-  :hover {
-    background: #ddd;
-  }
-
-  :disabled {
-    background: #ddd;
-    cursor: not-allowed;
-  }
 `;
 
 class Sandbox extends React.Component {
@@ -114,26 +62,20 @@ class Sandbox extends React.Component {
 
   render() {
     const todoList = this.state.todoList.map((todoItem, ind) => (
-      <Item key={`${todoItem.text}-${ind}`}>
-        <Text
-          onClick={(e) => this.handleToggleItem(e, ind)}
-          completed={todoItem.completed}
-        >
-          {todoItem.text}
-        </Text>
-        <Delete onClick={() => this.handleDeleteItem(ind)}>x</Delete>
-      </Item>
+      <TodoItem
+        key={`${todoItem.text}-${ind}`}
+        text={todoItem.text}
+        completed={todoItem.completed}
+        toggle={(e) => this.handleToggleItem(e, ind)}
+        delete={() => this.handleDeleteItem(ind)}
+      />
     ));
     
     return (
       <Container>
         <H1>Sandbox TODO List</H1>
         {todoList.length > 0 ? todoList : 'No items on the list'}
-        {/* <Button
-          disabled={this.state.todoList.length === 0}
-          onClick={this.handleRemoveAll}
-        >Remoe All</Button> */}
-        <ButtonC
+        <Button
           text="Remove All"
           disabled={this.state.todoList.length === 0}
           clicked={this.handleRemoveAll}
