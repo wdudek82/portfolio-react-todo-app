@@ -9,7 +9,7 @@
 
 ### TODO:
 
-1. Form for adding new items
+1. ~~Form for adding new items~~
 2. Edit existing todo items
 2. ~~Event handler for removing all todo items~~
 3. ~~Sandbox Component grew quite big, so now it would be the right moment to refator it, and split it~~

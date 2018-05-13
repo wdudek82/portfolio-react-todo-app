@@ -62,9 +62,7 @@ class Sandbox extends React.Component {
     this.setState(() => ({ todoList: [] }));
   }
 
-  handleAddItem = (e, newItem) => {
-    e.preventDefault();
-
+  handleAddItem = (newItem) => {
     const updatedTodoList = [
       ...this.state.todoList,
       {
