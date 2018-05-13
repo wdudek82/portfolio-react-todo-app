@@ -3,23 +3,39 @@ import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Form = styled.form`
   display: flex;
   width: 300px;
 `;
 
-const todoForm = (props) => (
-  <Wrapper>
-    <Input
-      type="text"
-      placeholder="New Item"
-    />
-    <Button
-      text="Add"
-      size="sm"
-      mb="1rem"
-    />
-  </Wrapper>
-);
+class TodoForm extends React.Component {
+  state = {
+    todo: ''
+  }
 
-export default todoForm;
+  handleInputChange = (e) => {
+    const todo = e.target.value;
+    this.setState(() => ({ todo }));
+  }
+
+  render() {
+    return (
+      <Form onSubmit={(e) => this.props.addItem(e, this.state.todo)}>
+        <Input
+          name="todo"
+          type="text"
+          value={this.state.todo}
+          placeholder="New Item"
+          changed={(e) => this.handleInputChange(e, this.state.todo)}
+        />
+        <Button
+          text="Add"
+          size="sm"
+          mb="1rem"
+        />
+      </Form>
+    );
+  }
+};
+
+export default TodoForm;

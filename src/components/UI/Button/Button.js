@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const btnSizeHandler = ({ size }) => {
-  console.log(size);
   switch (size) {
     case 'xs':
       return '0.2rem';

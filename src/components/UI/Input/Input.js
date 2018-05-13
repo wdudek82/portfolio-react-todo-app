@@ -12,9 +12,11 @@ const InputField = styled.input`
 
 const input = (props) => (
   <InputField
+    name={props.name}
     type={props.type}
     value={props.value}
     placeholder={props.placeholder}
+    onChange={props.changed}
   />
 );
 

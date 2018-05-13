@@ -62,6 +62,21 @@ class Sandbox extends React.Component {
     this.setState(() => ({ todoList: [] }));
   }
 
+  handleAddItem = (e, newItem) => {
+    e.preventDefault();
+
+    const updatedTodoList = [
+      ...this.state.todoList,
+      {
+        text: newItem,
+        completed: false
+      }
+    ];
+
+    this.setState(() => ({ todoList: updatedTodoList }));
+
+  }
+
   render() {
     const todoList = this.state.todoList.map((todoItem, ind) => (
       <TodoItem
@@ -76,7 +91,9 @@ class Sandbox extends React.Component {
     return (
       <Container>
         <H1>Sandbox TODO List</H1>
-        <TodoForm />
+        <TodoForm 
+          addItem={this.handleAddItem}
+        />
         {todoList.length > 0 ? todoList : 'No items on the list'}
         <Button
           text="Remove All"
