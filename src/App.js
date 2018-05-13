@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Todo from './components/Todo/Todo';
 
@@ -7,7 +8,10 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <Todo />
+        <Switch>
+          <Route path="/" exact component={Todo} />
+          <Route render={() => <h1>Ooops! No such page found!</h1>} />
+        </Switch>
       </div>
     );
   }

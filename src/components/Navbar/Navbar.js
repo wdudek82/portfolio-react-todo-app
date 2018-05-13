@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
@@ -34,9 +35,15 @@ const navbar = (props) => (
   <Nav>
     <Brand>Logo</Brand>
     <RightMenu>
-      <p><a href="/">Todo List</a></p>
-      <p><a href="/about">About</a></p>
-      <p><a href="/logout">Log Out</a></p>
+      <p>
+        <NavLink to="/" exact>Home</NavLink>
+      </p>
+      <p>
+        <NavLink to="/about" exact>About</NavLink>
+      </p>
+      <p>
+        <NavLink to="/logout" exact>Logout</NavLink>
+      </p>
     </RightMenu>
   </Nav>
 );
