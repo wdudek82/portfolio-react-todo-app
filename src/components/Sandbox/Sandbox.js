@@ -32,6 +32,7 @@ const Item = styled.div`
 const Text = styled.div`
   display: flex;
   align-items: center;
+  color: ${props => props.completed ? '#bbb' : '#000'};
   text-decoration: ${props => props.completed ? 'line-through' : 'none'};
   width: 100%;
   height: 100%;
@@ -104,6 +105,11 @@ class Sandbox extends React.Component {
     this.setState(() => ({todoList: updatedTodoList}));
   }
 
+  handleRemoveAll = () => {
+    console.log('remove all');
+    this.setState(() => ({ todoList: [] }));
+  }
+
   render() {
     const todoList = this.state.todoList.map((todoItem, ind) => (
       <Item key={`${todoItem.text}-${ind}`}>
@@ -123,6 +129,7 @@ class Sandbox extends React.Component {
         {todoList.length > 0 ? todoList : 'No items on the list'}
         <Button
           disabled={this.state.todoList.length === 0}
+          onClick={this.handleRemoveAll}
         >Remoe All</Button>
       </Container>
     )

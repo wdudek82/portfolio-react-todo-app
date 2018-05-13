@@ -10,7 +10,7 @@
 ### TODO:
 
 1. Adding new items
-2. Event handler for removing all todo items
+2. ~~Event handler for removing all todo items~~
 3. Sandbox Component grew quite big, so now would be right time to refator it, and split it
 4. Adding routing using React Router
 5. Adding React to handle state (it may look like ovekill, but intentional)
