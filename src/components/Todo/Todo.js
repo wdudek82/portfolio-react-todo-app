@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TodoItem from './TodoItem/TodoItem';
+import TodoForm from './TodoForm/TodoForm';
 import Button from '../UI/Button/Button';
 import styled from 'styled-components';
 
@@ -16,6 +17,7 @@ const Container = styled.div`
 
 const H1 = styled.h1`
   margin: 0 0 1rem 0;
+  font-weight: 300;
 `;
 
 class Sandbox extends React.Component {
@@ -74,11 +76,13 @@ class Sandbox extends React.Component {
     return (
       <Container>
         <H1>Sandbox TODO List</H1>
+        <TodoForm />
         {todoList.length > 0 ? todoList : 'No items on the list'}
         <Button
           text="Remove All"
           disabled={this.state.todoList.length === 0}
           clicked={this.handleRemoveAll}
+          mt="1rem"
         />
       </Container>
     )

@@ -18,7 +18,7 @@ const TodoItem = styled.div`
 const Text = styled.div`
   display: flex;
   align-items: center;
-  color: ${props => props.completed ? '#bbb' : '#000'};
+  color: ${props => props.completed ? '#bbb' : '#333'};
   text-decoration: ${props => props.completed ? 'line-through' : 'none'};
   width: 100%;
   height: 100%;
@@ -26,7 +26,7 @@ const Text = styled.div`
 `;
 
 const Delete = styled.span`
-  margin: 0 0.1rem;
+  margin: 0 0.2rem;
   font-size: 0.8rem;
   height: 0;
 
