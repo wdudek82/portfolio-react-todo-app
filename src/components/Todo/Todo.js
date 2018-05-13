@@ -16,7 +16,7 @@ const Container = styled.div`
 `;
 
 const H1 = styled.h1`
-  margin: 0 0 1rem 0;
+  margin: 1rem 0 2rem 0;
   font-weight: 300;
 `;
 
