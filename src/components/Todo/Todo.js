@@ -27,13 +27,14 @@ class Todo extends React.Component {
     const todoList = this.props.todoList.map((todoItem, ind) => (
       <TodoItem
         key={`${todoItem.text}-${ind}`}
-        id={todoItem.ind}
+        id={ind}
         text={todoItem.text}
         completed={todoItem.completed}
         toggle={() => this.props.onToggleCompleted(ind)}
-        edit={() => this.props.onTodoStartEditing(ind)}
+        editMode={() => this.props.onTodoStartEditing(ind, todoItem.text)}
         isEdited={todoItem.edited}
-        edited={() => console.log('changed')}
+        cancelUpdate={() => this.props.onTodoStopEditing(ind)}
+        saveUpdate={this.props.onUpdateItem}
         delete={() => this.props.onDeleteItem(ind)}
       />
     ));
@@ -64,11 +65,27 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onCreateItem: text => dispatch(actionCreators.createTodoItem(text)),
-    onDeleteItem: itemId => dispatch(actionCreators.deleteTodoItem(itemId)),
-    onRemoveAllItems: () => dispatch(actionCreators.removeAllTodoItems()),
-    onToggleCompleted: itemId => dispatch(actionCreators.toggleTodoCompleted(itemId)),
-    onTodoStartEditing: itemId => dispatch(actionCreators.setTodoStartEditing(itemId))
+    onCreateItem: text => (
+      dispatch(actionCreators.createTodoItem(text))
+    ),
+    onUpdateItem: (itemId, newText) => (
+      dispatch(actionCreators.updateTodoItem(itemId, newText))
+    ),
+    onDeleteItem: itemId => (
+      dispatch(actionCreators.deleteTodoItem(itemId))
+    ),
+    onRemoveAllItems: () => (
+      dispatch(actionCreators.removeAllTodoItems())
+    ),
+    onToggleCompleted: itemId => (
+      dispatch(actionCreators.toggleTodoCompleted(itemId))
+    ),
+    onTodoStartEditing: itemId => (
+      dispatch(actionCreators.setTodoStartEditing(itemId))
+    ),
+    onTodoStopEditing: itemId => (
+      dispatch(actionCreators.setTodoStopEditing(itemId))
+    )
   }
 }
 

@@ -8,7 +8,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const TodoItem = Container.extend`
+const Main = Container.extend`
   width: 300px;
   min-height: 50px;
   margin: 0.5rem 0;
@@ -32,7 +32,7 @@ const LeftIcon = Container.extend`
         if (props.completed) {
           return '#bbb';
         } else if (props.edited) {
-          return 'red';
+          return '#b60505';
         }
         return 'black';
       }
@@ -51,7 +51,7 @@ const RightIcon = Container.extend`
   padding: 0 1rem 0 0;
 
   i {
-    color: ${props => props.edited ? 'green' : '#333'};
+    color: ${props => props.edited ? '#036a03' : '#333'};
 
     :hover {
       cursor: pointer;
@@ -68,39 +68,62 @@ const EditInput = styled.input`
   font-size: 1rem;
 `;
 
-const todoItem = (props) => {
-  let content = (
-    <TodoItem>
-      <LeftIcon onClick={props.edit} completed={props.completed}>
-        <i className="fas fa-pencil-alt"></i>
-      </LeftIcon>
-      <Text
-        onClick={props.toggle}
-        completed={props.completed}
-      >
-        {props.text}
-      </Text>
-      <RightIcon onClick={props.delete}>
-        <i className="far fa-times-circle"></i>
-      </RightIcon>
-    </TodoItem>
-  );
+class TodoItem extends React.Component {
+  state = {
+    text: ''
+  }
 
-  if (props.isEdited) {
-    content = (
-      <TodoItem>
-        <LeftIcon onClick={props.edit} edited={props.edited}>
-          <i className="fas fa-ban"></i>
+  handleEditTodo = (e) => {
+    const newText = e.target.value;
+    this.setState(() => ({ text: newText }));
+  }
+
+  handleEditMode = () => {
+    this.props.editMode();
+    this.setState(() => ({ text: this.props.text }));
+  }
+
+  render() {
+    let content = (
+      <Main>
+        <LeftIcon onClick={this.handleEditMode} completed={this.props.completed}>
+          <i className="fas fa-pencil-alt"></i>
         </LeftIcon>
-        <EditInput type="text" value={props.text} onChange={props.edited} />
-        <RightIcon onClick={props.edited} edited={props.edited}>
-          <i className="far fa-check-circle"></i>
+        <Text
+          onClick={this.props.toggle}
+          completed={this.props.completed}
+        >
+          {this.props.text}
+        </Text>
+        <RightIcon onClick={this.props.delete}>
+          <i className="far fa-times-circle"></i>
         </RightIcon>
-      </TodoItem>
+      </Main>
     );
-  } 
-
-  return content;
+  
+    if (this.props.isEdited) {
+      content = (
+        <Main>
+          <LeftIcon onClick={this.props.cancelUpdate} edited={this.props.isEdited}>
+            <i className="fas fa-ban"></i>
+          </LeftIcon>
+          <EditInput
+            type="text"
+            value={this.state.text}
+            onChange={this.handleEditTodo}
+          />
+          <RightIcon
+            onClick={() => this.props.saveUpdate(this.props.id, this.state.text)}
+            edited={this.props.isEdited}
+          >
+            <i className="far fa-check-circle"></i>
+          </RightIcon>
+        </Main>
+      );
+    } 
+  
+    return content;
+  }
 };
 
-export default todoItem;
+export default TodoItem;

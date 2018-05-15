@@ -23,6 +23,24 @@ function createTodoItem(state, text) {
   return state;
 }
 
+function updateTodoItem(state, itemId, newText) {
+  const updatedTodoList = state.todoList.map((item, ind) => {
+    if (ind === itemId) {
+      item = {
+        ...item,
+        text: newText,
+        edited: false
+      };
+    }
+    return item;
+  })
+
+  return {
+    ...state,
+    todoList: updatedTodoList
+  }
+}
+
 function deleteTodoItem(state, itemId) {
   const updatedTodoList = state.todoList.filter((item, ind) => {
     return ind !== itemId
@@ -75,12 +93,26 @@ function setTodoStartEditing(state, itemId) {
   };
 }
 
+function setTodoStopEditing(state, itemId) {
+  const updatedTodoList = state.todoList.map((item, ind) => {
+    if (ind === itemId) {
+      item.edited = false;
+    }
+    return item;
+  });
+
+  return {
+    ...state,
+    todoList: updatedTodoList
+  }
+}
+
 const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.CREATE_TODO_ITEM:
       return createTodoItem(state, action.text);
     case actionTypes.UPDATE_TODO_ITEM:
-      return state;
+      return updateTodoItem(state, action.itemId, action.newText);
     case actionTypes.DELETE_TODO_ITEM:
       return deleteTodoItem(state, action.itemId);
     case actionTypes.REMOVE_ALL_ITEMS:
@@ -89,6 +121,8 @@ const todoReducer = (state = initialState, action) => {
       return toggleTodoCompleted(state, action.itemId);
     case actionTypes.SET_TODO_START_EDITING:
       return setTodoStartEditing(state, action.itemId);
+    case actionTypes.SET_TODO_STOP_EDITING:
+      return setTodoStopEditing(state, action.itemId);
     default:
       return state;
   }
