@@ -26,9 +26,18 @@ const TodoItem = Container.extend`
 const LeftIcon = Container.extend`
   padding: 0 0 0 1rem;
   cursor: ${props => props.completed ? 'default' : 'pointer'};
-  > i {
-    color: ${props => props.completed ? '#bbb' : 'black'};
-  };
+
+  i {
+    color: ${props => {
+        if (props.completed) {
+          return '#bbb';
+        } else if (props.edited) {
+          return 'red';
+        }
+        return 'black';
+      }
+    };
+  }
 `;
 
 const Text = Container.extend`
@@ -39,10 +48,11 @@ const Text = Container.extend`
 `;
 
 const RightIcon = Container.extend`
-  color: #333;
   padding: 0 1rem 0 0;
 
   i {
+    color: ${props => props.edited ? 'green' : '#333'};
+
     :hover {
       cursor: pointer;
       font-weight: bold;
@@ -79,11 +89,11 @@ const todoItem = (props) => {
   if (props.isEdited) {
     content = (
       <TodoItem>
-        <LeftIcon onClick={props.edit}>
+        <LeftIcon onClick={props.edit} edited={props.edited}>
           <i className="fas fa-ban"></i>
         </LeftIcon>
         <EditInput type="text" value={props.text} onChange={props.edited} />
-        <RightIcon onClick={props.delete}>
+        <RightIcon onClick={props.edited} edited={props.edited}>
           <i className="far fa-check-circle"></i>
         </RightIcon>
       </TodoItem>

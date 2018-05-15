@@ -31,9 +31,9 @@ class Todo extends React.Component {
         text={todoItem.text}
         completed={todoItem.completed}
         toggle={() => this.props.onToggleCompleted(ind)}
-        edit={() => this.props.onTodoStartEditind(ind)}
-        edited={() => console.log('changed')}
+        edit={() => this.props.onTodoStartEditing(ind)}
         isEdited={todoItem.edited}
+        edited={() => console.log('changed')}
         delete={() => this.props.onDeleteItem(ind)}
       />
     ));
@@ -68,7 +68,7 @@ const mapDispatchToProps = dispatch => {
     onDeleteItem: itemId => dispatch(actionCreators.deleteTodoItem(itemId)),
     onRemoveAllItems: () => dispatch(actionCreators.removeAllTodoItems()),
     onToggleCompleted: itemId => dispatch(actionCreators.toggleTodoCompleted(itemId)),
-    onTodoStartEditind: itemId => dispatch(actionCreators.setTodoStartEditing(itemId))
+    onTodoStartEditing: itemId => dispatch(actionCreators.setTodoStartEditing(itemId))
   }
 }
 
