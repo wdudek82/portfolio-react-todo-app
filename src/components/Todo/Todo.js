@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import TodoItem from './TodoItem/TodoItem';
 import TodoForm from './TodoForm/TodoForm';
@@ -20,21 +21,18 @@ const H1 = styled.h1`
   font-weight: 300;
 `;
 
-class Sandbox extends React.Component {
+class Todo extends React.Component {
   state = {
     todoList: [
-      {text: 'todo item 1', completed: false},
-      {text: 'todo item 2', completed: false},
-      {text: 'todo item 3', completed: false},
-      {text: 'todo item 4', completed: false},
-      {text: 'todo item 5', completed: true}
+      {text: 'todo item 1', edited: false, completed: false},
+      {text: 'todo item 2', edited: false, completed: false},
+      {text: 'todo item 3', edited: false, completed: false},
+      {text: 'todo item 4', edited: false, completed: false},
+      {text: 'todo item 5', edited: false, completed: false}
     ]
   }
 
   handleToggleItem = (e, itemId) => {
-    console.log('toggle item', itemId);
-    console.log(this.state);
-
     const updatedTodoList = this.state.todoList.map((todoItem, index) => {
       if (index === itemId) {
         return {
@@ -58,30 +56,48 @@ class Sandbox extends React.Component {
   }
 
   handleRemoveAll = () => {
-    console.log('remove all');
     this.setState(() => ({ todoList: [] }));
   }
 
   handleAddItem = (newItem) => {
     const updatedTodoList = [
-      ...this.state.todoList,
       {
         text: newItem,
         completed: false
-      }
+      },
+      ...this.state.todoList
     ];
 
     this.setState(() => ({ todoList: updatedTodoList }));
+  }
 
+  handleEditItem = (itemId) => {
+    if (this.state.todoList[itemId].completed) {
+      return;
+    }
+
+    const updatedTodoList = this.state.todoList.map((todoItem, ind) => {
+      if (ind === itemId) {
+        todoItem.edited = !todoItem.edited;
+      } else {
+        todoItem.edited = false;
+      }
+      return todoItem;
+    });
+    this.setState(() => ({ todoList: updatedTodoList }));
   }
 
   render() {
     const todoList = this.state.todoList.map((todoItem, ind) => (
       <TodoItem
         key={`${todoItem.text}-${ind}`}
+        id={todoItem.ind}
         text={todoItem.text}
         completed={todoItem.completed}
         toggle={(e) => this.handleToggleItem(e, ind)}
+        edit={() => this.handleEditItem(ind)}
+        edited={() => console.log('changed')}
+        isEdited={todoItem.edited}
         delete={() => this.handleDeleteItem(ind)}
       />
     ));
@@ -104,4 +120,16 @@ class Sandbox extends React.Component {
   }
 }
 
-export default Sandbox;
+const mapStateToProps = state => {
+  return {
+    todoList: state.todoList
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todo);

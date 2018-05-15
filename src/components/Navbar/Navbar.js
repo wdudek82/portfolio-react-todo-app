@@ -33,7 +33,7 @@ const RightMenu = styled.div`
 
 const navbar = (props) => (
   <Nav>
-    <Brand>Logo</Brand>
+    <Brand>ToDo App</Brand>
     <RightMenu>
       <p>
         <NavLink to="/" exact>Home</NavLink>

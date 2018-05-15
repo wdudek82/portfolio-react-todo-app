@@ -1,14 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const InputField = styled.input`
+export const InputFieldCSS = css`
   flex: 1;
-  border: 1px solid #bbb;
+  border: none;
+  border-bottom: 1px solid #bbb;
   padding: 0.7rem;
   height: 2.05rem;
   outline: none;
   font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
 `;
+
+export const InputField = styled.input`${InputFieldCSS}`;
 
 const input = (props) => (
   <InputField

@@ -5,18 +5,19 @@ import styled from 'styled-components';
 
 const Form = styled.form`
   display: flex;
+  justify-content: space-between;
   width: 300px;
 `;
 
 class TodoForm extends React.Component {
   state = {
     todo: ''
-  }
+  };
 
   handleInputChange = (e) => {
     const todo = e.target.value;
     this.setState(() => ({ todo }));
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ class TodoForm extends React.Component {
       this.props.addItem(this.state.todo);
       this.setState(() => ({ todo: '' }));
     }
-  }
+  };
 
   render() {
     return (
@@ -37,14 +38,10 @@ class TodoForm extends React.Component {
           placeholder="New Item"
           changed={(e) => this.handleInputChange(e, this.state.todo)}
         />
-        <Button
-          text="Add"
-          size="sm"
-          mb="1rem"
-        />
+        <Button text="Add" size="sm" mb="1rem" />
       </Form>
     );
   }
-};
+}
 
 export default TodoForm;

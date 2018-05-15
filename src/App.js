@@ -10,7 +10,11 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route path="/" exact component={Todo} />
-          <Route render={() => <h1>Ooops! No such page found!</h1>} />
+          <Route render={(props) => {
+              const path = props.location.pathname;
+              return <h3>Ooops! Page {path} not found!</h3>
+            }}
+          />
         </Switch>
       </div>
     );

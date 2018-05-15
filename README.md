@@ -9,18 +9,18 @@
 
 ### TODO:
 
-1. Checkbox for marking items as completed, clicking items switch to edit mode
-2. Add drag & drop items?
-3. Items filters
+1. Edit existing todo items
+2. Items filters
 3. Form validation + error messages
-4. Split Navbar to Navigation and NavigationItem
-5. ~~Form for adding new items~~
-6. Edit existing todo items
-7. Add theams/global CSS variables/SCSS helpers using styled-components and polished
-8. ~~Event handler for removing all todo items~~
-9. ~~Sandbox Component grew quite big, so now it would be the right moment to refator it, and split it~~
-10. ~~Adding routing using React Router~~
-11. Adding React to handle state (it may look like ovekill, but intentional)
-12. Data persistence of some kind (Firebase?)
-13. User accounts, authentication/authorization
-13. Async actions with React Thunk
+4. Add drag & drop items?
+5. Split Navbar to Navigation and NavigationItem(s)
+6. Add themes/global CSS variables/SCSS helpers using styled-components and polished
+7. Adding Redux to handle state (and that is intentional overkill)
+8. Data persistence of some kind (Firebase?)
+9. User accounts, authentication/authorization
+10. Async actions with React Thunk
+11. ~~Form for adding new items~~
+12. ~~Clicking pencil icon switch to edit mode~~
+13. ~~Event handler for removing all todo items~~
+14. ~~Sandbox Component grew quite big, so now it would be the right moment to refator it, and split it~~
+15. ~~Adding routing using React Router~~
