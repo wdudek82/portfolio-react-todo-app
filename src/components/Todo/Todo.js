@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import * as actionCreators from '../../store/actions';
 
 import TodoItem from './TodoItem/TodoItem';
 import TodoForm from './TodoForm/TodoForm';
@@ -88,7 +89,8 @@ class Todo extends React.Component {
   }
 
   render() {
-    const todoList = this.state.todoList.map((todoItem, ind) => (
+    // const todoList = this.state.todoList.map((todoItem, ind) => (
+    const todoList = this.props.todoList.map((todoItem, ind) => (
       <TodoItem
         key={`${todoItem.text}-${ind}`}
         id={todoItem.ind}
@@ -106,7 +108,7 @@ class Todo extends React.Component {
       <Container>
         <H1>Sandbox TODO List</H1>
         <TodoForm 
-          addItem={this.handleAddItem}
+          addItem={this.props.onCreateItem}
         />
         {todoList.length > 0 ? todoList : 'No items on the list'}
         <Button
@@ -128,7 +130,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    onCreateItem: text => dispatch(actionCreators.createTodoItem(text)),
+    onDeleteItem: itemId => dispatch(actionCreators.deleteTodoItem(itemId)),
+    onRemoveAllItems: () => dispatch(actionCreators.removeAllTodoItems()),
   }
 }
 

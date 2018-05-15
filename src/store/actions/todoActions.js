@@ -20,6 +20,10 @@ export const deleteTodoItem = (itemId) => ({
   itemId
 });
 
+export const removeAllTodoItems = () => ({
+  type: actionTypes.REMOVE_ALL_ITEMS
+});
+
 export const setTodoCompleted = (itemId) => ({
   type: actionTypes.SET_TODO_COMPLETED,
   itemId
