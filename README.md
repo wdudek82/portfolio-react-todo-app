@@ -15,10 +15,10 @@
 4. Add drag & drop items?
 5. Split Navbar to Navigation and NavigationItem(s)
 6. Add themes/global CSS variables/SCSS helpers using styled-components and polished
-7. Adding Redux to handle state (and that is intentional overkill)
-8. Data persistence of some kind (Firebase?)
-9. User accounts, authentication/authorization
-10. Async actions with React Thunk
+7. Data persistence of some kind (Firebase?)
+8. User accounts, authentication/authorization
+9. Async actions with React Thunk
+10. ~~Adding Redux to handle state (and that is intentional overkill)~~
 11. ~~Form for adding new items~~
 12. ~~Clicking pencil icon switch to edit mode~~
 13. ~~Event handler for removing all todo items~~

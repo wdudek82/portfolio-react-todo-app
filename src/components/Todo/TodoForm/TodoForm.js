@@ -38,7 +38,7 @@ class TodoForm extends React.Component {
           placeholder="New Item"
           changed={(e) => this.handleInputChange(e, this.state.todo)}
         />
-        <Button text="Add" size="sm" mb="1rem" />
+        <Button text="Add" size="sm" mb="1rem" ml="1rem" />
       </Form>
     );
   }

@@ -25,7 +25,7 @@ const TodoItem = Container.extend`
 
 const LeftIcon = Container.extend`
   padding: 0 0 0 1rem;
-  cursor: ${props => props.completed ? 'pointer' : 'pointer'};
+  cursor: ${props => props.completed ? 'default' : 'pointer'};
   > i {
     color: ${props => props.completed ? '#bbb' : 'black'};
   };

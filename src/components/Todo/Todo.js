@@ -23,84 +23,18 @@ const H1 = styled.h1`
 `;
 
 class Todo extends React.Component {
-  state = {
-    todoList: [
-      {text: 'todo item 1', edited: false, completed: false},
-      {text: 'todo item 2', edited: false, completed: false},
-      {text: 'todo item 3', edited: false, completed: false},
-      {text: 'todo item 4', edited: false, completed: false},
-      {text: 'todo item 5', edited: false, completed: false}
-    ]
-  }
-
-  handleToggleItem = (e, itemId) => {
-    const updatedTodoList = this.state.todoList.map((todoItem, index) => {
-      if (index === itemId) {
-        return {
-          ...todoItem,
-          completed: !todoItem.completed
-        };
-      }
-      return todoItem;
-    });
-
-    this.setState(() => ({
-      todoList: updatedTodoList
-    }));
-  }
-
-  handleDeleteItem = (itemId) => {
-    const updatedTodoList = this.state.todoList.filter((item, ind) => (
-      itemId !== ind
-    ))
-    this.setState(() => ({todoList: updatedTodoList}));
-  }
-
-  handleRemoveAll = () => {
-    this.setState(() => ({ todoList: [] }));
-  }
-
-  handleAddItem = (newItem) => {
-    const updatedTodoList = [
-      {
-        text: newItem,
-        completed: false
-      },
-      ...this.state.todoList
-    ];
-
-    this.setState(() => ({ todoList: updatedTodoList }));
-  }
-
-  handleEditItem = (itemId) => {
-    if (this.state.todoList[itemId].completed) {
-      return;
-    }
-
-    const updatedTodoList = this.state.todoList.map((todoItem, ind) => {
-      if (ind === itemId) {
-        todoItem.edited = !todoItem.edited;
-      } else {
-        todoItem.edited = false;
-      }
-      return todoItem;
-    });
-    this.setState(() => ({ todoList: updatedTodoList }));
-  }
-
   render() {
-    // const todoList = this.state.todoList.map((todoItem, ind) => (
     const todoList = this.props.todoList.map((todoItem, ind) => (
       <TodoItem
         key={`${todoItem.text}-${ind}`}
         id={todoItem.ind}
         text={todoItem.text}
         completed={todoItem.completed}
-        toggle={(e) => this.handleToggleItem(e, ind)}
-        edit={() => this.handleEditItem(ind)}
+        toggle={() => this.props.onToggleCompleted(ind)}
+        edit={() => this.props.onTodoStartEditind(ind)}
         edited={() => console.log('changed')}
         isEdited={todoItem.edited}
-        delete={() => this.handleDeleteItem(ind)}
+        delete={() => this.props.onDeleteItem(ind)}
       />
     ));
     
@@ -113,8 +47,8 @@ class Todo extends React.Component {
         {todoList.length > 0 ? todoList : 'No items on the list'}
         <Button
           text="Remove All"
-          disabled={this.state.todoList.length === 0}
-          clicked={this.handleRemoveAll}
+          disabled={this.props.todoList.length === 0}
+          clicked={this.props.onRemoveAllItems}
           mt="1rem"
         />
       </Container>
@@ -133,6 +67,8 @@ const mapDispatchToProps = dispatch => {
     onCreateItem: text => dispatch(actionCreators.createTodoItem(text)),
     onDeleteItem: itemId => dispatch(actionCreators.deleteTodoItem(itemId)),
     onRemoveAllItems: () => dispatch(actionCreators.removeAllTodoItems()),
+    onToggleCompleted: itemId => dispatch(actionCreators.toggleTodoCompleted(itemId)),
+    onTodoStartEditind: itemId => dispatch(actionCreators.setTodoStartEditing(itemId))
   }
 }
 

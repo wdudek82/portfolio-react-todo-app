@@ -4,8 +4,7 @@ export {
   updateTodoItem,
   deleteTodoItem,
   removeAllTodoItems,
-  setTodoCompleted,
-  setTodoNotCompleted,
+  toggleTodoCompleted,
   setTodoStartEditing,
   setTodoStopEditing
 } from './todoActions';

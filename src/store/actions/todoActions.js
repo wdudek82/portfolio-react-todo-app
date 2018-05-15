@@ -24,13 +24,8 @@ export const removeAllTodoItems = () => ({
   type: actionTypes.REMOVE_ALL_ITEMS
 });
 
-export const setTodoCompleted = (itemId) => ({
-  type: actionTypes.SET_TODO_COMPLETED,
-  itemId
-});
-
-export const setTodoNotCompleted = (itemId) => ({
-  type: actionTypes.SET_TODO_NOT_COMPLETED,
+export const toggleTodoCompleted = (itemId) => ({
+  type: actionTypes.TOGGLE_TODO_COMPLETED,
   itemId
 });
 
