@@ -11,22 +11,24 @@
 
 ### TODO:
 
-1. Edit TODO List Header
-2. Items filters
-3. Form validation + error messages
-4. Add drag & drop items?
-5. Split Navbar to Navigation and NavigationItem(s)
-6. Data persistence of some kind (Firebase?)
-7. User accounts, authentication/authorization
-8. Async actions with React Thunk
-9. Add callendar
-10. Different todo lists for each day in callendar
-11. ~~Edit existing todo items~~
-12. ~~Cancel editing todo item~~
-13. ~~Add themes/global CSS variables/SCSS helpers using styled-components and polished~~
-14. ~~Adding Redux to handle state (and that is intentional overkill)~~
-15. ~~Form for adding new items~~
-16. ~~Clicking pencil icon switch to edit mode~~
-17. ~~Event handler for removing all todo items~~
-18. ~~Sandbox Component grew quite big, so now it would be the right moment to refator it, and split it~~
-19. ~~Adding routing using React Router~~
+1. Confirm item update with Enter
+2. Edit TODO List Header
+3. Items filters
+4. Form validation + error messages
+5. Make it fully responsive
+6. Add drag & drop items?
+7. Split Navbar to Navigation and NavigationItem(s)
+8. Data persistence of some kind (Firebase?)
+9. User accounts, authentication/authorization
+10. Async actions with React Thunk
+11. Add callendar
+12. Different todo lists for each day in callendar
+13. ~~Edit existing todo items~~
+14. ~~Cancel editing todo item~~
+15. ~~Add themes/global CSS variables/SCSS helpers using styled-components and polished~~
+16. ~~Adding Redux to handle state (and that is intentional overkill)~~
+17. ~~Form for adding new items~~
+18. ~~Clicking pencil icon switch to edit mode~~
+19. ~~Event handler for removing all todo items~~
+20. ~~Sandbox Component grew quite big, so now it would be the right moment to refator it, and split it~~
+21. ~~Adding routing using React Router~~

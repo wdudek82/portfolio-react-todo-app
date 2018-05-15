@@ -12,7 +12,7 @@ const Main = Container.extend`
   width: 300px;
   min-height: 50px;
   margin: 0.5rem 0;
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
   border: 1px solid #ccc;
   border-radius: 3px;
   user-select: none;
@@ -43,8 +43,9 @@ const LeftIcon = Container.extend`
 const Text = Container.extend`
   color: ${props => props.completed ? '#bbb' : '#333'};
   text-decoration: ${props => props.completed ? 'line-through' : 'none'};
-  padding: 0 1rem;
+  padding: 1rem;
   width: 100%;
+  /* height: 100%; */
 `;
 
 const RightIcon = Container.extend`
@@ -64,7 +65,7 @@ const EditInput = styled.input`
   ${InputFieldCSS}
   height: 19px;
   padding: 0;
-  margin: 0 1rem;
+  margin: 1rem;
   font-size: 1rem;
 `;
 
