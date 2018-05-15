@@ -5,8 +5,8 @@
 ### Tools used
 
 1. React
-2. Router (react-router-dom)
-3. Redux, react-redux
+2. Router v4 (react-router-dom)
+3. Redux, react-redux, redux-devtools-extension
 4. CSS in JS (styled-components)
 
 ### TODO:
