@@ -12,7 +12,6 @@ const Main = Container.extend`
   width: 300px;
   min-height: 50px;
   margin: 0.5rem 0;
-  /* padding: 1rem 0; */
   border: 1px solid #ccc;
   border-radius: 3px;
   user-select: none;
@@ -45,7 +44,6 @@ const Text = Container.extend`
   text-decoration: ${props => props.completed ? 'line-through' : 'none'};
   padding: 1rem;
   width: 100%;
-  /* height: 100%; */
 `;
 
 const RightIcon = Container.extend`
@@ -84,6 +82,16 @@ class TodoItem extends React.Component {
     this.setState(() => ({ text: this.props.text }));
   }
 
+  handleKeyDown = (e) => {
+    const keyPressed = e.keyCode;
+
+    if (keyPressed === 13) {
+      this.props.saveUpdate(this.props.id, this.state.text);
+    } else if (keyPressed === 27) {
+      this.props.cancelUpdate();
+    }
+  }
+
   render() {
     let content = (
       <Main>
@@ -112,6 +120,7 @@ class TodoItem extends React.Component {
             type="text"
             value={this.state.text}
             onChange={this.handleEditTodo}
+            onKeyDown={this.handleKeyDown}
           />
           <RightIcon
             onClick={() => this.props.saveUpdate(this.props.id, this.state.text)}

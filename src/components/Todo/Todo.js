@@ -5,6 +5,7 @@ import * as actionCreators from '../../store/actions';
 import TodoItem from './TodoItem/TodoItem';
 import TodoForm from './TodoForm/TodoForm';
 import Button from '../UI/Button/Button';
+import { InputFieldCSS } from '../UI/Input/Input'; 
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -18,12 +19,105 @@ const Container = styled.div`
 `;
 
 const H1 = styled.h1`
-  margin: 1rem 0 2rem 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0rem 0 1rem 0;
   font-weight: 300;
+  border: 1px dotted transparent;
+  min-height:  66px;
+  padding: 0 1rem;
+  width: 350px;
+  word-break: break-all;
+
+  i {
+    display: none;
+    position: absolute;
+    font-size: 0.7rem;
+    right: 4px;
+    top: 4px;
+  }
+
+  :hover {
+    border: 1px dotted black;
+
+    i {
+      display: inline-block;
+      color: #bbb;
+      
+      :hover {
+        color: #000;
+        cursor: pointer;
+      }
+    }
+  }
+`;
+
+const HeaderInput = styled.input`
+  ${InputFieldCSS}
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 300;
+  /* padding: 0 1rem; */
+  margin: 0 1rem;
+  width: 300px;
 `;
 
 class Todo extends React.Component {
+  state = {
+    listTitle: 'Sandbox TODO List',
+    listTitleEdited: false
+  }
+
+  handleChangeListTitle = (e) => {
+    console.log('header', e);
+    this.setState(() => ({ listTitleEdited: true }));
+  }
+
+  handleUpdateHeader = (e) => {
+    console.log(e.target.value);
+    const updatedListTitle = e.target.value;
+    this.setState(() => ({ listTitle: updatedListTitle }));
+  }
+
+  handleKeyDown = (e) => {
+    const keyPressed = e.keyCode;
+    const updateListTitle = e.target.value;
+
+    console.log('key prssed:', keyPressed);
+
+    if (keyPressed === 13) {
+      this.setState(() => (
+        {
+          listTitle: updateListTitle,
+          listTitleEdited: false
+        }
+      ));
+    } else if (keyPressed === 27) {
+      this.setState(() => ({ listTitleEdited: false }));
+    }
+  }
+
   render() {
+    let headerContent = (
+      <React.Fragment>
+        <i onClick={this.handleChangeListTitle} className="far fa-edit"></i>
+        {this.state.listTitle || 'no title'}
+      </React.Fragment>
+    );
+    if (this.state.listTitleEdited) {
+      headerContent = (
+        <React.Fragment>
+          <HeaderInput
+            value={this.state.listTitle}
+            onChange={this.handleUpdateHeader}
+            onKeyDown={this.handleKeyDown}
+          />
+        </React.Fragment>
+      );
+    }
+
     const todoList = this.props.todoList.map((todoItem, ind) => (
       <TodoItem
         key={`${todoItem.text}-${ind}`}
@@ -41,7 +135,9 @@ class Todo extends React.Component {
     
     return (
       <Container>
-        <H1>Sandbox TODO List</H1>
+        <H1>
+          {headerContent}
+        </H1>
         <TodoForm 
           addItem={this.props.onCreateItem}
         />
