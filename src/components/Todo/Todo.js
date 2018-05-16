@@ -118,6 +118,7 @@ class Todo extends React.Component {
             value={this.state.listTitle}
             onChange={this.handleUpdateHeader}
             onKeyDown={this.handleKeyDown}
+            onBlur={() => this.setState(() => ({ listTitleEdited: false }))}
           />
         </React.Fragment>
       );
