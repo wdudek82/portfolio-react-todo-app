@@ -1,6 +1,6 @@
-# Portfolio: React ToDo App
+# Portfolio: React (Turbo) ToDo App
 
-## Because why not (read - becase you need to start somewhere;))
+## Because why not
 
 ### Tools used
 
