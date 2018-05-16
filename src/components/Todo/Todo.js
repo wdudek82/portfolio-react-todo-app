@@ -18,6 +18,12 @@ const Container = styled.div`
   box-shadow: 3px 3px 15px #bbb;
 `;
 
+const P = styled.p`
+  margin: 1.5rem 0;
+  font-size: 1.5rem;
+  color: #ccc;
+`;
+
 const H1 = styled.h1`
   position: relative;
   display: flex;
@@ -56,10 +62,9 @@ const H1 = styled.h1`
 
 const HeaderInput = styled.input`
   ${InputFieldCSS}
-  display: inline-block;
+  background: #fbffac;
   font-size: 2rem;
   font-weight: 300;
-  /* padding: 0 1rem; */
   margin: 0 1rem;
   width: 300px;
 `;
@@ -141,7 +146,11 @@ class Todo extends React.Component {
         <TodoForm 
           addItem={this.props.onCreateItem}
         />
-        {todoList.length > 0 ? todoList : 'No items on the list'}
+        {
+          todoList.length > 0 ?
+          todoList :
+          <P>List is empty</P>
+        }
         <Button
           text="Remove All"
           disabled={this.props.todoList.length === 0}

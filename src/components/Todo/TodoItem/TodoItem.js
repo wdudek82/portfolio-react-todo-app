@@ -61,6 +61,7 @@ const RightIcon = Container.extend`
 
 const EditInput = styled.input`
   ${InputFieldCSS}
+  background: #fbffac;
   height: 19px;
   padding: 0;
   margin: 1rem;
@@ -68,8 +69,22 @@ const EditInput = styled.input`
 `;
 
 class TodoItem extends React.Component {
-  state = {
-    text: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: '',
+    }
+    this.editInutRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const input = this.editInutRef.current;
+
+    if (input) {
+      console.log('focused on', input);
+      input.focus();
+    }
+    console.log(this.editInutRef.current);
   }
 
   handleEditTodo = (e) => {
@@ -77,7 +92,7 @@ class TodoItem extends React.Component {
     this.setState(() => ({ text: newText }));
   }
 
-  handleEditMode = () => {
+  handleEditMode = (e) => {
     this.props.editMode();
     this.setState(() => ({ text: this.props.text }));
   }
@@ -95,7 +110,10 @@ class TodoItem extends React.Component {
   render() {
     let content = (
       <Main>
-        <LeftIcon onClick={this.handleEditMode} completed={this.props.completed}>
+        <LeftIcon
+          onClick={this.handleEditMode}
+          completed={this.props.completed}
+        >
           <i className="fas fa-pencil-alt"></i>
         </LeftIcon>
         <Text
@@ -113,14 +131,19 @@ class TodoItem extends React.Component {
     if (this.props.isEdited) {
       content = (
         <Main>
-          <LeftIcon onClick={this.props.cancelUpdate} edited={this.props.isEdited}>
+          <LeftIcon
+            onClick={this.props.cancelUpdate}
+            edited={this.props.isEdited}
+          >
             <i className="fas fa-ban"></i>
           </LeftIcon>
           <EditInput
+            ref={this.editInutRef}
             type="text"
             value={this.state.text}
             onChange={this.handleEditTodo}
             onKeyDown={this.handleKeyDown}
+            onBlur={this.props.cancelUpdate}
           />
           <RightIcon
             onClick={() => this.props.saveUpdate(this.props.id, this.state.text)}

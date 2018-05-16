@@ -10,6 +10,10 @@ export const InputFieldCSS = css`
   outline: none;
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
+
+  :focus {
+    border-bottom: 1px solid #333;
+  }
 `;
 
 export const InputField = styled.input`${InputFieldCSS}`;
