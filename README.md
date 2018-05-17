@@ -26,6 +26,7 @@
 13. List of todo lists (ability to: add, view, and remove them)
 14. Lists sharing with other users
 15. Real time updates with websockets
+16. Jest + Enzyme test for reducers and components
 16. ~~Edit TODO List Header~~
 17. ~~Confirm item update with Enter, cancel with Esc~~
 18. ~~Edit existing todo items~~

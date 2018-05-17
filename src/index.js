@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import todoReducer from './store/reducers/todoReducer';
+import configureStore from './store/configureStore';
 
 import App from './App';
 
@@ -26,14 +25,7 @@ injectGlobal`
   }
 `;
 
-const store = createStore(
-  todoReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-
-// store.subscribe(() => {
-//   console.log(store.getState());
-// });
+const store = configureStore();
 
 const app = (
   <Provider store={store}>
