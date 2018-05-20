@@ -11,30 +11,30 @@
 
 ### TODO:
 
-1. Move Todo header state to store
-2. auto-focus on dynamic inputs (using refs?)
-3. Add cancel/accept icons to header input
-4. Items filters
-5. Form validation + error messages
-6. Make it fully responsive
-7. React Intl?
-8. Add drag & drop items?
-9. Split Navbar to Navigation and NavigationItem(s)
-10. Data persistence of some kind (Firebase?)
-11. User accounts, authentication/authorization
-12. Async actions with React Thunk
-13. List of todo lists (ability to: add, view, and remove them)
-14. Lists sharing with other users
-15. Real time updates with websockets
-16. Jest + Enzyme test for reducers and components
-16. ~~Edit TODO List Header~~
-17. ~~Confirm item update with Enter, cancel with Esc~~
-18. ~~Edit existing todo items~~
-19. ~~Cancel editing todo item~~
-20. ~~Add themes/global CSS variables/SCSS helpers using styled-components and polished~~
-21. ~~Adding Redux to handle state (and that is intentional overkill)~~
-22. ~~Form for adding new items~~
-23. ~~Clicking pencil icon switch to edit mode~~
-24. ~~Event handler for removing all todo items~~
-25. ~~Sandbox Component grew quite big, so now it would be the right moment to refator it, and split it~~
-26. ~~Adding routing using React Router~~
+* [ ] Move Todo header state to store
+* [ ] auto-focus on dynamic inputs (using refs?)
+* [ ] Add cancel/accept icons to header input
+* [ ] Items filters
+* [ ] Form validation + error messages
+* [ ] Make it fully responsive
+* [ ] React Intl?
+* [ ] Add drag & drop items?
+* [ ] Split Navbar to Navigation and NavigationItem(s)
+* [ ] Data persistence of some kind (Firebase?)
+* [ ] User accounts, authentication/authorization
+* [ ] Async actions with React Thunk
+* [ ] List of todo lists (ability to: add, view, and remove them)
+* [ ] Lists sharing with other users
+* [ ] Real time updates with websockets
+* [ ] Jest + Enzyme test for reducers and components
+* [x] Edit TODO List Header
+* [x] Confirm item update with Enter, cancel with Esc
+* [x] Edit existing todo items
+* [x] Cancel editing todo item
+* [x] Add themes/global CSS variables/SCSS helpers using styled-components and polished
+* [x] Adding Redux to handle state (and that is intentional overkill)
+* [x] Form for adding new items
+* [x] Clicking pencil icon switch to edit mode
+* [x] Event handler for removing all todo items
+* [x] Sandbox Component grew quite big, so now it would be the right moment to refator it, and split it
+* [x] Adding routing using React Router

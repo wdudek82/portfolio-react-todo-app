@@ -16,7 +16,9 @@ export const InputFieldCSS = css`
   }
 `;
 
-export const InputField = styled.input`${InputFieldCSS}`;
+export const InputField = styled.input`
+  ${InputFieldCSS};
+`;
 
 const input = (props) => (
   <InputField

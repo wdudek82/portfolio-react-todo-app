@@ -5,7 +5,7 @@ import * as actionCreators from '../../store/actions';
 import TodoItem from './TodoItem/TodoItem';
 import TodoForm from './TodoForm/TodoForm';
 import Button from '../UI/Button/Button';
-import { InputFieldCSS } from '../UI/Input/Input'; 
+import { InputFieldCSS } from '../UI/Input/Input';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -32,7 +32,7 @@ const H1 = styled.h1`
   margin: 0rem 0 1rem 0;
   font-weight: 300;
   border: 1px dotted transparent;
-  min-height:  66px;
+  min-height: 66px;
   padding: 0 1rem;
   width: 350px;
   word-break: break-all;
@@ -51,7 +51,7 @@ const H1 = styled.h1`
     i {
       display: inline-block;
       color: #bbb;
-      
+
       :hover {
         color: #000;
         cursor: pointer;
@@ -61,8 +61,7 @@ const H1 = styled.h1`
 `;
 
 const HeaderInput = styled.input`
-  ${InputFieldCSS}
-  background: #fbffac;
+  ${InputFieldCSS} background: #fbffac;
   font-size: 2rem;
   font-weight: 300;
   margin: 0 1rem;
@@ -73,18 +72,18 @@ class Todo extends React.Component {
   state = {
     listTitle: 'Sandbox TODO List',
     listTitleEdited: false
-  }
+  };
 
   handleChangeListTitle = (e) => {
     console.log('header', e);
     this.setState(() => ({ listTitleEdited: true }));
-  }
+  };
 
   handleUpdateHeader = (e) => {
     console.log(e.target.value);
     const updatedListTitle = e.target.value;
     this.setState(() => ({ listTitle: updatedListTitle }));
-  }
+  };
 
   handleKeyDown = (e) => {
     const keyPressed = e.keyCode;
@@ -93,21 +92,19 @@ class Todo extends React.Component {
     console.log('key prssed:', keyPressed);
 
     if (keyPressed === 13) {
-      this.setState(() => (
-        {
-          listTitle: updateListTitle,
-          listTitleEdited: false
-        }
-      ));
+      this.setState(() => ({
+        listTitle: updateListTitle,
+        listTitleEdited: false
+      }));
     } else if (keyPressed === 27) {
       this.setState(() => ({ listTitleEdited: false }));
     }
-  }
+  };
 
   render() {
     let headerContent = (
       <React.Fragment>
-        <i onClick={this.handleChangeListTitle} className="far fa-edit"></i>
+        <i onClick={this.handleChangeListTitle} className="far fa-edit" />
         {this.state.listTitle || 'no title'}
       </React.Fragment>
     );
@@ -138,20 +135,12 @@ class Todo extends React.Component {
         delete={() => this.props.onDeleteItem(ind)}
       />
     ));
-    
+
     return (
       <Container>
-        <H1>
-          {headerContent}
-        </H1>
-        <TodoForm 
-          addItem={this.props.onCreateItem}
-        />
-        {
-          todoList.length > 0 ?
-          todoList :
-          <P>List is empty</P>
-        }
+        <H1>{headerContent}</H1>
+        <TodoForm addItem={this.props.onCreateItem} />
+        {todoList.length > 0 ? todoList : <P>List is empty</P>}
         <Button
           text="Remove All"
           disabled={this.props.todoList.length === 0}
@@ -159,40 +148,30 @@ class Todo extends React.Component {
           mt="1rem"
         />
       </Container>
-    )
+    );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     todoList: state.todoList
-  }
-}
+  };
+};
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onCreateItem: text => (
-      dispatch(actionCreators.createTodoItem(text))
-    ),
-    onUpdateItem: (itemId, newText) => (
-      dispatch(actionCreators.updateTodoItem(itemId, newText))
-    ),
-    onDeleteItem: itemId => (
-      dispatch(actionCreators.deleteTodoItem(itemId))
-    ),
-    onRemoveAllItems: () => (
-      dispatch(actionCreators.removeAllTodoItems())
-    ),
-    onToggleCompleted: itemId => (
-      dispatch(actionCreators.toggleTodoCompleted(itemId))
-    ),
-    onTodoStartEditing: itemId => (
-      dispatch(actionCreators.setTodoStartEditing(itemId))
-    ),
-    onTodoStopEditing: itemId => (
+    onCreateItem: (text) => dispatch(actionCreators.createTodoItem(text)),
+    onUpdateItem: (itemId, newText) =>
+      dispatch(actionCreators.updateTodoItem(itemId, newText)),
+    onDeleteItem: (itemId) => dispatch(actionCreators.deleteTodoItem(itemId)),
+    onRemoveAllItems: () => dispatch(actionCreators.removeAllTodoItems()),
+    onToggleCompleted: (itemId) =>
+      dispatch(actionCreators.toggleTodoCompleted(itemId)),
+    onTodoStartEditing: (itemId) =>
+      dispatch(actionCreators.setTodoStartEditing(itemId)),
+    onTodoStopEditing: (itemId) =>
       dispatch(actionCreators.setTodoStopEditing(itemId))
-    )
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo);
