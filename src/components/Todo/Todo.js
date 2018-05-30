@@ -10,13 +10,14 @@ import Button from '../UI/Button/Button';
 import { InputFieldCSS } from '../UI/Input/Input';
 
 const Container = styled.div`
+  background: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 2rem auto;
   padding: 2rem;
   width: 500px;
-  box-shadow: 3px 3px 15px #bbb;
+  box-shadow: 3px 3px 15px #000;
 `;
 
 const P = styled.p`

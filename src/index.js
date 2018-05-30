@@ -17,7 +17,23 @@ injectGlobal`
     font-family: 'Roboto', sans-serif;
   }
 
+  html {
+    min-height: 100vh;
+  }
+
   body {
+    background-image: url(
+      'https://www.publicdomainpictures.net/pictures/160000/velka/carribean-sea-and-sky-14574356900Js.jpg'
+    ); /* fallback */
+    background:
+      /* linear-gradient(to bottom, rgba(0, 0, 100, 0.4) 70%, rgba(0, 0, 0, 0.8)), */
+      url(
+        'https://www.publicdomainpictures.net/pictures/160000/velka/carribean-sea-and-sky-14574356900Js.jpg'
+      );
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: auto cover;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
