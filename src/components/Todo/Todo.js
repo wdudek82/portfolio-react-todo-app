@@ -128,7 +128,6 @@ class Todo extends React.Component {
 
     // FIXME: todoList inside todoList object - thats stupid
     // convert todo state to array of todos
-    console.log('Todo Item', this.props.todoList.todoList);
     const todoList = this.props.todoList.todoList.map((todoItem, ind) => {
       return (
         <TodoItem

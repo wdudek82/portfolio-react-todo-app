@@ -62,5 +62,6 @@ module.exports = {
         caughtErrors: 'all',
       },
     ],
+    'no-unused-expressions': ["error", { "allowTaggedTemplates": true }]
   },
 };
