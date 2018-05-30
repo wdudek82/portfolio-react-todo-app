@@ -12,9 +12,13 @@ const Div = styled.div`
   ); */
 `;
 
+const H3 = styled.h3`
+  color: white;
+`;
+
 const http404 = (props) => {
   const path = props.location.pathname;
-  return <h3>Ooops! Page {path} not found!</h3>;
+  return <H3>Ooops! Page {path} not found!</H3>;
 };
 
 const app = (props) => {

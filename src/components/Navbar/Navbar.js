@@ -8,7 +8,7 @@ const Nav = styled.nav`
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
-  background: black;
+  background: rgba(0, 0, 0, 0.6);
   height: 50px;
 `;
 
