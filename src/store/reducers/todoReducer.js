@@ -6,8 +6,8 @@ const initialState = {
     { text: 'todo item 2', edited: false, completed: false },
     { text: 'todo item 3', edited: false, completed: false },
     { text: 'todo item 4', edited: false, completed: false },
-    { text: 'todo item 5', edited: false, completed: false }
-  ]
+    { text: 'todo item 5', edited: false, completed: false },
+  ],
 };
 
 function createTodoItem(state, text) {
@@ -16,7 +16,7 @@ function createTodoItem(state, text) {
       todoList: [
         { text, edited: false, completed: false },
         ...state.todoList,
-      ]
+      ],
     };
   }
 
@@ -25,51 +25,53 @@ function createTodoItem(state, text) {
 
 function updateTodoItem(state, itemId, newText) {
   const updatedTodoList = state.todoList.map((item, ind) => {
+    let updatedItem = item;
     if (ind === itemId) {
-      item = {
+      updatedItem = {
         ...item,
         text: newText,
-        edited: false
+        edited: false,
       };
     }
-    return item;
-  })
-
-  return {
-    ...state,
-    todoList: updatedTodoList
-  }
-}
-
-function deleteTodoItem(state, itemId) {
-  const updatedTodoList = state.todoList.filter((item, ind) => {
-    return ind !== itemId
+    return updatedItem;
   });
 
   return {
     ...state,
-    todoList: updatedTodoList
+    todoList: updatedTodoList,
+  };
+}
+
+function deleteTodoItem(state, itemId) {
+  const updatedTodoList = state.todoList.filter((item, ind) => {
+    return ind !== itemId;
+  });
+
+  return {
+    ...state,
+    todoList: updatedTodoList,
   };
 }
 
 function removeAllItems(state) {
   return {
     ...state,
-    todoList: []
+    todoList: [],
   };
 }
 
 function toggleTodoCompleted(state, itemId) {
   const updatedTodoList = state.todoList.map((item, ind) => {
+    const updatedItem = item;
     if (ind === itemId) {
-      item.completed = !item.completed;
+      updatedItem.completed = !item.completed;
     }
-    return item;
+    return updatedItem;
   });
 
   return {
     ...state,
-    todoList: updatedTodoList
+    todoList: updatedTodoList,
   };
 }
 
@@ -78,27 +80,29 @@ function setTodoStartEditing(state, itemId) {
     return state;
   }
 
-  const updatedTodoList = state.todoList.map((todoItem, ind) => {
+  const updatedTodoList = state.todoList.map((item, ind) => {
+    const updatedItem = item;
     if (ind === itemId) {
-      todoItem.edited = !todoItem.edited;
+      updatedItem.edited = !updatedItem.edited;
     } else {
-      todoItem.edited = false;
+      updatedItem.edited = false;
     }
-    return todoItem;
+    return updatedItem;
   });
 
   return {
     ...state,
-    todoList: updatedTodoList
+    todoList: updatedTodoList,
   };
 }
 
 function setTodoStopEditing(state, itemId) {
   const updatedTodoList = state.todoList.map((item, ind) => {
+    const updatedItem = item;
     if (ind === itemId) {
-      item.edited = false;
+      updatedItem.edited = false;
     }
-    return item;
+    return updatedItem;
   });
 
   return {

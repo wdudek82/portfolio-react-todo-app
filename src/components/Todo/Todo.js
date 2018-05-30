@@ -80,7 +80,6 @@ class Todo extends React.Component {
   };
 
   handleUpdateHeader = (e) => {
-    console.log(e.target.value);
     const updatedListTitle = e.target.value;
     this.setState(() => ({ listTitle: updatedListTitle }));
   };
@@ -88,8 +87,6 @@ class Todo extends React.Component {
   handleKeyDown = (e) => {
     const keyPressed = e.keyCode;
     const updateListTitle = e.target.value;
-
-    console.log('key prssed:', keyPressed);
 
     if (keyPressed === 13) {
       this.setState(() => ({
