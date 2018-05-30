@@ -1,12 +1,13 @@
 import React from 'react';
+import PropsTypes from 'prop-types';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import * as actionCreators from '../../store/actions';
 
 import TodoItem from './TodoItem/TodoItem';
 import TodoForm from './TodoForm/TodoForm';
 import Button from '../UI/Button/Button';
 import { InputFieldCSS } from '../UI/Input/Input';
-import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
@@ -71,11 +72,10 @@ const HeaderInput = styled.input`
 class Todo extends React.Component {
   state = {
     listTitle: 'Sandbox TODO List',
-    listTitleEdited: false
+    listTitleEdited: false,
   };
 
   handleChangeListTitle = (e) => {
-    console.log('header', e);
     this.setState(() => ({ listTitleEdited: true }));
   };
 
@@ -94,7 +94,7 @@ class Todo extends React.Component {
     if (keyPressed === 13) {
       this.setState(() => ({
         listTitle: updateListTitle,
-        listTitleEdited: false
+        listTitleEdited: false,
       }));
     } else if (keyPressed === 27) {
       this.setState(() => ({ listTitleEdited: false }));
@@ -104,7 +104,12 @@ class Todo extends React.Component {
   render() {
     let headerContent = (
       <React.Fragment>
-        <i onClick={this.handleChangeListTitle} className="far fa-edit" />
+        <i
+          role="button"
+          onClick={this.handleChangeListTitle}
+          onKeyPress={this.handleChangeListTitle}
+          className="far fa-edit"
+        />
         {this.state.listTitle || 'no title'}
       </React.Fragment>
     );
@@ -121,20 +126,26 @@ class Todo extends React.Component {
       );
     }
 
-    const todoList = this.props.todoList.map((todoItem, ind) => (
-      <TodoItem
-        key={`${todoItem.text}-${ind}`}
-        id={ind}
-        text={todoItem.text}
-        completed={todoItem.completed}
-        toggle={() => this.props.onToggleCompleted(ind)}
-        editMode={() => this.props.onTodoStartEditing(ind, todoItem.text)}
-        isEdited={todoItem.edited}
-        cancelUpdate={() => this.props.onTodoStopEditing(ind)}
-        saveUpdate={this.props.onUpdateItem}
-        delete={() => this.props.onDeleteItem(ind)}
-      />
-    ));
+    // FIXME: todoList inside todoList object - thats stupid
+    // convert todo state to array of todos
+    console.log('Todo Item', this.props.todoList.todoList);
+    const todoList = this.props.todoList.todoList.map((todoItem, ind) => {
+      return (
+        <TodoItem
+          key={`${todoItem.text}-${Date.now()}`}
+          id={ind}
+          text={todoItem.text}
+          completed={todoItem.completed}
+          toggle={() => this.props.onToggleCompleted(ind)}
+          editMode={() => this.props.onTodoStartEditing(ind, todoItem.text)}
+          isEdited={todoItem.edited}
+          cancelUpdate={() => this.props.onTodoStopEditing(ind)}
+          saveUpdate={this.props.onUpdateItem}
+          delete={() => this.props.onDeleteItem(ind)}
+        />
+
+      );
+    });
 
     return (
       <Container>
@@ -152,9 +163,20 @@ class Todo extends React.Component {
   }
 }
 
+Todo.propTypes = {
+  todoList: PropsTypes.object.isRequired,
+  onCreateItem: PropsTypes.func.isRequired,
+  onToggleCompleted: PropsTypes.func.isRequired,
+  onTodoStopEditing: PropsTypes.func.isRequired,
+  onRemoveAllItems: PropsTypes.func.isRequired,
+  onTodoStartEditing: PropsTypes.func.isRequired,
+  onUpdateItem: PropsTypes.func.isRequired,
+  onDeleteItem: PropsTypes.func.isRequired,
+};
+
 const mapStateToProps = (state) => {
   return {
-    todoList: state.todoList
+    todoList: state.todo,
   };
 };
 
@@ -170,7 +192,7 @@ const mapDispatchToProps = (dispatch) => {
     onTodoStartEditing: (itemId) =>
       dispatch(actionCreators.setTodoStartEditing(itemId)),
     onTodoStopEditing: (itemId) =>
-      dispatch(actionCreators.setTodoStopEditing(itemId))
+      dispatch(actionCreators.setTodoStopEditing(itemId)),
   };
 };
 

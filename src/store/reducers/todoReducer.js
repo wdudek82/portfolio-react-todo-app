@@ -2,11 +2,11 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   todoList: [
-    {text: 'todo item 1', edited: false, completed: false},
-    {text: 'todo item 2', edited: false, completed: false},
-    {text: 'todo item 3', edited: false, completed: false},
-    {text: 'todo item 4', edited: false, completed: false},
-    {text: 'todo item 5', edited: false, completed: false}
+    { text: 'todo item 1', edited: false, completed: false },
+    { text: 'todo item 2', edited: false, completed: false },
+    { text: 'todo item 3', edited: false, completed: false },
+    { text: 'todo item 4', edited: false, completed: false },
+    { text: 'todo item 5', edited: false, completed: false }
   ]
 };
 
@@ -14,8 +14,8 @@ function createTodoItem(state, text) {
   if (text) {
     return {
       todoList: [
-        {text: text, edited: false, completed: false},
-        ...state.todoList
+        { text, edited: false, completed: false },
+        ...state.todoList,
       ]
     };
   }
@@ -103,8 +103,8 @@ function setTodoStopEditing(state, itemId) {
 
   return {
     ...state,
-    todoList: updatedTodoList
-  }
+    todoList: updatedTodoList,
+  };
 }
 
 const todoReducer = (state = initialState, action) => {

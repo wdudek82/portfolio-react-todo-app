@@ -1,6 +1,7 @@
 import React from 'react';
-import { InputFieldCSS } from '../../UI/Input/Input';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { InputFieldCSS } from '../../UI/Input/Input';
 
 const Container = styled.div`
   display: flex;
@@ -24,24 +25,23 @@ const Main = Container.extend`
 
 const LeftIcon = Container.extend`
   padding: 0 0 0 1rem;
-  cursor: ${props => props.completed ? 'default' : 'pointer'};
+  cursor: ${(props) => (props.completed ? 'default' : 'pointer')};
 
   i {
-    color: ${props => {
-        if (props.completed) {
-          return '#bbb';
-        } else if (props.edited) {
-          return '#b60505';
-        }
-        return 'black';
-      }
-    };
+    color: ${(props) => {
+    if (props.completed) {
+      return '#bbb';
+    } else if (props.edited) {
+      return '#b60505';
+    }
+    return 'black';
+  }};
   }
 `;
 
 const Text = Container.extend`
-  color: ${props => props.completed ? '#bbb' : '#333'};
-  text-decoration: ${props => props.completed ? 'line-through' : 'none'};
+  color: ${(props) => (props.completed ? '#bbb' : '#333')};
+  text-decoration: ${(props) => (props.completed ? 'line-through' : 'none')};
   padding: 1rem;
   width: 100%;
 `;
@@ -50,7 +50,7 @@ const RightIcon = Container.extend`
   padding: 0 1rem 0 0;
 
   i {
-    color: ${props => props.edited ? '#036a03' : '#333'};
+    color: ${(props) => (props.edited ? '#036a03' : '#333')};
 
     :hover {
       cursor: pointer;
@@ -73,18 +73,8 @@ class TodoItem extends React.Component {
     super(props);
     this.state = {
       text: '',
-    }
+    };
     this.editInutRef = React.createRef();
-  }
-
-  componentDidMount() {
-    const input = this.editInutRef.current;
-
-    if (input) {
-      console.log('focused on', input);
-      input.focus();
-    }
-    console.log(this.editInutRef.current);
   }
 
   handleEditTodo = (e) => {
@@ -114,7 +104,7 @@ class TodoItem extends React.Component {
           onClick={this.handleEditMode}
           completed={this.props.completed}
         >
-          <i className="fas fa-pencil-alt"></i>
+          <i className="fas fa-pencil-alt" />
         </LeftIcon>
         <Text
           onClick={this.props.toggle}
@@ -123,11 +113,11 @@ class TodoItem extends React.Component {
           {this.props.text}
         </Text>
         <RightIcon onClick={this.props.delete}>
-          <i className="far fa-times-circle"></i>
+          <i className="far fa-times-circle" />
         </RightIcon>
       </Main>
     );
-  
+
     if (this.props.isEdited) {
       content = (
         <Main>
@@ -135,7 +125,7 @@ class TodoItem extends React.Component {
             onClick={this.props.cancelUpdate}
             edited={this.props.isEdited}
           >
-            <i className="fas fa-ban"></i>
+            <i className="fas fa-ban" />
           </LeftIcon>
           <EditInput
             ref={this.editInutRef}
@@ -149,14 +139,26 @@ class TodoItem extends React.Component {
             onClick={() => this.props.saveUpdate(this.props.id, this.state.text)}
             edited={this.props.isEdited}
           >
-            <i className="far fa-check-circle"></i>
+            <i className="far fa-check-circle" />
           </RightIcon>
         </Main>
       );
-    } 
-  
+    }
+
     return content;
   }
+}
+
+TodoItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+  completed: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired,
+  delete: PropTypes.func.isRequired,
+  isEdited: PropTypes.bool.isRequired,
+  editMode: PropTypes.func.isRequired,
+  cancelUpdate: PropTypes.func.isRequired,
+  saveUpdate: PropTypes.func.isRequired,
 };
 
 export default TodoItem;

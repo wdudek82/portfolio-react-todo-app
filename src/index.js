@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-
-import App from './App';
-
 import { injectGlobal } from 'styled-components';
+
+import Root from './Root';
+import App from './components/App';
+
 import registerServiceWorker from './registerServiceWorker';
 
 injectGlobal`
@@ -25,14 +24,13 @@ injectGlobal`
   }
 `;
 
-const store = configureStore();
 
 const app = (
-  <Provider store={store}>
+  <Root>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </Provider>
+  </Root>
 );
 
 ReactDOM.render(app, document.getElementById('root'));
