@@ -1,21 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './store/reducers';
 
 const root = (props) => {
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(
     rootReducer,
     props.initialState,
-    applyMiddleware(),
+    composeEnhancers(applyMiddleware()),
   );
 
-  return (
-    <Provider store={store}>
-      {props.children}
-    </Provider>
-  );
+  return <Provider store={store}>{props.children}</Provider>;
 };
 
 root.defaultProps = {

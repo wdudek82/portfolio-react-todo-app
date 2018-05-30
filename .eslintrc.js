@@ -54,6 +54,7 @@ module.exports = {
         caughtErrors: 'all',
       },
     ],
-    'no-unused-expressions': ["error", { "allowTaggedTemplates": true }]
+    'no-unused-expressions': ["error", { "allowTaggedTemplates": true }],
+    'no-underscore-dangle': 0,
   },
 };

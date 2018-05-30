@@ -23,6 +23,17 @@
 
 ### :pencil2: TODO
 
+* [x] Edit TODO List Header
+* [x] Confirm item update with Enter, cancel with Esc
+* [x] Edit existing todo items
+* [x] Cancel editing todo item
+* [x] Add themes/global CSS variables/SCSS helpers using styled-components and polished
+* [x] Adding Redux to handle state (and that is intentional overkill)
+* [x] Form for adding new items
+* [x] Clicking pencil icon switch to edit mode
+* [x] Event handler for removing all todo items
+* [x] Sandbox Component grew quite big, so now it would be the right moment to refator it, and split it
+* [x] Adding routing using React Router
 * [ ] Move Todo header state to store
 * [ ] Add cancel/accept icons to header input
 * [ ] Items filters
@@ -40,14 +51,3 @@
 * [ ] Real time updates with websockets (SocketIO)
 * [ ] Jest + Enzyme test for reducers and components
 * [ ] NodeJS/Express API
-* [x] Edit TODO List Header
-* [x] Confirm item update with Enter, cancel with Esc
-* [x] Edit existing todo items
-* [x] Cancel editing todo item
-* [x] Add themes/global CSS variables/SCSS helpers using styled-components and polished
-* [x] Adding Redux to handle state (and that is intentional overkill)
-* [x] Form for adding new items
-* [x] Clicking pencil icon switch to edit mode
-* [x] Event handler for removing all todo items
-* [x] Sandbox Component grew quite big, so now it would be the right moment to refator it, and split it
-* [x] Adding routing using React Router
