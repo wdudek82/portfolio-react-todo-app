@@ -4,29 +4,42 @@
 
 ### Tools used
 
+#### Main
+
 1. React
-2. Router v4 (react-router-dom)
-3. Redux, react-redux, redux-devtools-extension
-4. CSS in JS (styled-components)
+2. prop-types (properties type checking for React)
+3. Router v4 (react-router-dom)
+4. Redux, react-redux, redux-devtools-extension
+5. CSS in JS (styled-components)
+
+#### Other
+
+1. ESLint + airbnb config
+
+### FIXME:
+
+* [ ] In edit mode input isn't filled with current todoItem text,
+* [ ] auto-focus on dynamic inputs (using refs?)
 
 ### TODO:
 
 * [ ] Move Todo header state to store
-* [ ] auto-focus on dynamic inputs (using refs?)
 * [ ] Add cancel/accept icons to header input
 * [ ] Items filters
+* [ ] Mark all as completed
 * [ ] Form validation + error messages
-* [ ] Make it fully responsive
+* [ ] Make it fully responsive (RWD)
 * [ ] React Intl?
-* [ ] Add drag & drop items?
-* [ ] Split Navbar to Navigation and NavigationItem(s)
+* [ ] Add drag & drop items
+* [ ] Split Navbar component to Navigation and NavigationItem(s)
 * [ ] Data persistence of some kind (Firebase?)
 * [ ] User accounts, authentication/authorization
-* [ ] Async actions with React Thunk
+* [ ] Async actions with React Thunk/React Saga
 * [ ] List of todo lists (ability to: add, view, and remove them)
 * [ ] Lists sharing with other users
-* [ ] Real time updates with websockets
+* [ ] Real time updates with websockets (SocketIO)
 * [ ] Jest + Enzyme test for reducers and components
+* [ ] NodeJS/Express API
 * [x] Edit TODO List Header
 * [x] Confirm item update with Enter, cancel with Esc
 * [x] Edit existing todo items

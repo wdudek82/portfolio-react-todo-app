@@ -102,6 +102,7 @@ class Todo extends React.Component {
     let headerContent = (
       <React.Fragment>
         <i
+          tabIndex="0"
           role="button"
           onClick={this.handleChangeListTitle}
           onKeyPress={this.handleChangeListTitle}
