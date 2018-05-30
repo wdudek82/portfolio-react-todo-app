@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import PropsTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -130,7 +131,7 @@ class Todo extends React.Component {
     const todoList = this.props.todoList.todoList.map((todoItem, ind) => {
       return (
         <TodoItem
-          key={`${todoItem.text}-${Date.now()}`}
+          key={`${todoItem.text}-${Date.now()}-${Math.random()}`}
           id={ind}
           text={todoItem.text}
           completed={todoItem.completed}

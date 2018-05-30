@@ -21,7 +21,7 @@ root.defaultProps = {
 };
 
 root.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.element.isRequired,
   initialState: PropTypes.object,
 };
 

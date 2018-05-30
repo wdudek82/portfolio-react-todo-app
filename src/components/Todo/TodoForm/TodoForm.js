@@ -1,7 +1,9 @@
+// @flow
 import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
-import styled from 'styled-components';
 
 const Form = styled.form`
   display: flex;
@@ -11,7 +13,7 @@ const Form = styled.form`
 
 class TodoForm extends React.Component {
   state = {
-    todo: ''
+    todo: '',
   };
 
   handleInputChange = (e) => {
@@ -43,5 +45,9 @@ class TodoForm extends React.Component {
     );
   }
 }
+
+TodoForm.propTypes = {
+  addItem: PropTypes.func.isRequired,
+};
 
 export default TodoForm;

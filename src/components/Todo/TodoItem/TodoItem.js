@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -15,7 +16,7 @@ const Main = Container.extend`
   margin: 0.5rem 0;
   border: 1px solid #ccc;
   border-radius: 3px;
-  /* user-select: none; */
+  user-select: none;
   word-break: break-all;
 
   :hover {

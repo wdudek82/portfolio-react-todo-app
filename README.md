@@ -4,17 +4,13 @@
 
 ### :wrench: Tools used
 
-#### Main
-
 1. React
 2. prop-types (properties type checking for React)
 3. Router v4 (react-router-dom)
 4. Redux, react-redux, redux-devtools-extension
 5. CSS in JS (styled-components)
-
-#### Other
-
-1. ESLint + airbnb config
+6. ESLint + airbnb config
+7. Flow typechecking
 
 ### :bug: BUGS
 
@@ -34,6 +30,7 @@
 * [x] Event handler for removing all todo items
 * [x] Sandbox Component grew quite big, so now it would be the right moment to refator it, and split it
 * [x] Adding routing using React Router
+* [ ] Fading effect on todo item delete
 * [ ] Move Todo header state to store
 * [ ] Add cancel/accept icons to header input
 * [ ] Items filters
