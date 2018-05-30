@@ -1,8 +1,8 @@
 # (Turbo) ToDo App with React/Redux
 
-## ToDo App On Steroids :syringe: ;)
+## ToDo App On Steroids :syringe:
 
-### Tools used
+### :wrench: Tools used
 
 #### Main
 
@@ -16,12 +16,12 @@
 
 1. ESLint + airbnb config
 
-### BUGS :bug:
+### :bug: BUGS
 
 * [ ] In edit mode input isn't filled with current todoItem text,
 * [ ] auto-focus on dynamic inputs (using refs?)
 
-### TODO :wrench:
+### :pencil2: TODO
 
 * [ ] Move Todo header state to store
 * [ ] Add cancel/accept icons to header input

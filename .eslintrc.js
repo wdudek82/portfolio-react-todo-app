@@ -2,19 +2,11 @@ module.exports = {
   extends: [
     'react-app',
     'airbnb',
-    // "jsx-a11y/recommended",
-    // "eslint:recommended",
-    // "babel-eslint",
   ],
   plugins: [
-    // "jsx-a11y",
     'babel',
-    // "react"
   ],
   parser: 'babel-eslint',
-  // "parserOptions": {
-  //   "ecmaVersion": 7,
-  // },
   env: {
     browser: true,
     node: true,
