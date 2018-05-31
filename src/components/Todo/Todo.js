@@ -1,7 +1,7 @@
-// @flow
 import React from 'react';
 import PropsTypes from 'prop-types';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import styled from 'styled-components';
 import * as actionCreators from '../../store/actions';
 
@@ -131,7 +131,7 @@ class Todo extends React.Component {
     const todoList = this.props.todoList.todoList.map((todoItem, ind) => {
       return (
         <TodoItem
-          key={`${todoItem.text}-${Date.now()}-${Math.random()}`}
+          key={`${_.uniqueId(todoItem.text)}`}
           id={ind}
           text={todoItem.text}
           completed={todoItem.completed}

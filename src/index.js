@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -25,12 +24,7 @@ injectGlobal`
   body {
     background-image: url(
       'https://www.publicdomainpictures.net/pictures/160000/velka/carribean-sea-and-sky-14574356900Js.jpg'
-    ); /* fallback */
-    background:
-      /* linear-gradient(to bottom, rgba(0, 0, 100, 0.4) 70%, rgba(0, 0, 0, 0.8)), */
-      url(
-        'https://www.publicdomainpictures.net/pictures/160000/velka/carribean-sea-and-sky-14574356900Js.jpg'
-      );
+    );
     background-repeat: no-repeat;
     background-position: center center;
     background-size: auto cover;
@@ -41,13 +35,14 @@ injectGlobal`
   }
 `;
 
-
 const app = (
-  <Root>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Root>
+  <React.StrictMode>
+    <Root>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Root>
+  </React.StrictMode>
 );
 
 ReactDOM.render(app, document.getElementById('root'));

@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
@@ -32,7 +31,7 @@ const RightMenu = styled.div`
   }
 `;
 
-const navbar = (props: any) => (
+const navbar = (props) => (
   <Nav>
     <Brand>ToDo App</Brand>
     <RightMenu>

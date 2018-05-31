@@ -8,9 +8,10 @@
 2. prop-types (properties type checking for React)
 3. Router v4 (react-router-dom)
 4. Redux, react-redux, redux-devtools-extension
-5. CSS in JS (styled-components)
-6. ESLint + airbnb config
-7. Flow typechecking
+5. Lodash
+6. CSS in JS (styled-components)
+7. ESLint + airbnb config
+8. ~~Flow typechecking~~
 
 ### :bug: BUGS
 

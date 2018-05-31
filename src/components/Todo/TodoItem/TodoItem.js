@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -154,12 +153,12 @@ TodoItem.propTypes = {
   id: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
   completed: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
-  delete: PropTypes.func.isRequired,
   isEdited: PropTypes.bool.isRequired,
   editMode: PropTypes.func.isRequired,
-  cancelUpdate: PropTypes.func.isRequired,
   saveUpdate: PropTypes.func.isRequired,
+  cancelUpdate: PropTypes.func.isRequired,
+  toggle: PropTypes.func.isRequired,
+  delete: PropTypes.func.isRequired,
 };
 
 export default TodoItem;

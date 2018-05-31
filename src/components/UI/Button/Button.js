@@ -36,7 +36,7 @@ const Btn = styled.button`
 
 class Button extends React.Component {
   state = {
-    pressed: false
+    pressed: false,
   };
 
   render() {
