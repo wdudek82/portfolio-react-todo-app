@@ -5,6 +5,7 @@ import { injectGlobal } from 'styled-components';
 
 import Root from './Root';
 import App from './components/App';
+import bieszczady from './assets/images/bieszczady.png'; 
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -22,11 +23,9 @@ injectGlobal`
   }
 
   body {
-    background-image: url(
-      'https://www.publicdomainpictures.net/pictures/160000/velka/carribean-sea-and-sky-14574356900Js.jpg'
-    );
+    background-image: url(${bieszczady});
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center bottom;
     background-size: auto cover;
     background-attachment: fixed;
     margin: 0;
