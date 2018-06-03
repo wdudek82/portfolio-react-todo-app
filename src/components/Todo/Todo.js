@@ -2,74 +2,12 @@ import React from 'react';
 import PropsTypes from 'prop-types';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import styled from 'styled-components';
 import * as actionCreators from '../../store/actions';
 
 import TodoItem from './TodoItem/TodoItem';
 import TodoForm from './TodoForm/TodoForm';
 import Button from '../UI/Button/Button';
-import { InputFieldCSS } from '../UI/Input/Input';
-
-const Container = styled.div`
-  background: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 2rem auto;
-  padding: 2rem;
-  width: 500px;
-  box-shadow: 3px 3px 15px #000;
-`;
-
-const P = styled.p`
-  margin: 1.5rem 0;
-  font-size: 1.5rem;
-  color: #ccc;
-`;
-
-const H1 = styled.h1`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0rem 0 1rem 0;
-  font-weight: 300;
-  border: 1px dotted transparent;
-  min-height: 66px;
-  padding: 0 1rem;
-  width: 350px;
-  word-break: break-all;
-
-  i {
-    display: none;
-    position: absolute;
-    font-size: 0.7rem;
-    right: 4px;
-    top: 4px;
-  }
-
-  :hover {
-    border: 1px dotted black;
-
-    i {
-      display: inline-block;
-      color: #bbb;
-
-      :hover {
-        color: #000;
-        cursor: pointer;
-      }
-    }
-  }
-`;
-
-const HeaderInput = styled.input`
-  ${InputFieldCSS} background: #fbffac;
-  font-size: 2rem;
-  font-weight: 300;
-  margin: 0 1rem;
-  width: 300px;
-`;
+import { Container, P, H1, HeaderInput } from './Todo.styles';
 
 class Todo extends React.Component {
   state = {
@@ -128,7 +66,7 @@ class Todo extends React.Component {
 
     // FIXME: todoList inside todoList object - thats stupid
     // convert todo state to array of todos
-    const todoList = this.props.todoList.todoList.map((todoItem, ind) => {
+    const todoList = this.props.todoList.map((todoItem, ind) => {
       return (
         <TodoItem
           key={`${_.uniqueId(todoItem.text)}`}
@@ -145,7 +83,6 @@ class Todo extends React.Component {
 
       );
     });
-
     return (
       <Container>
         <H1>{headerContent}</H1>
@@ -163,7 +100,7 @@ class Todo extends React.Component {
 }
 
 Todo.propTypes = {
-  todoList: PropsTypes.object.isRequired,
+  todoList: PropsTypes.array.isRequired,
   onCreateItem: PropsTypes.func.isRequired,
   onToggleCompleted: PropsTypes.func.isRequired,
   onTodoStopEditing: PropsTypes.func.isRequired,
@@ -175,7 +112,7 @@ Todo.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    todoList: state.todo,
+    todoList: state.todo.todoList,
   };
 };
 

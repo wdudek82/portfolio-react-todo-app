@@ -15,8 +15,7 @@
 
 ### :bug: BUGS
 
-* [ ] In edit mode input isn't filled with current todoItem text,
-* [ ] auto-focus on dynamic inputs (using refs?)
+* [ ] auto-focus on dynamic inputs
 
 ### :pencil2: TODO
 
@@ -32,6 +31,7 @@
 * [x] Sandbox Component grew quite big, so now it would be the right moment to refator it, and split it
 * [x] Adding routing using React Router
 * [ ] Fading effect on todo item delete
+* [ ] Items marked as completed go to bottom of the list/go to separate "completed" foldable list
 * [ ] Move Todo header state to store
 * [ ] Add cancel/accept icons to header input
 * [ ] Items filters
