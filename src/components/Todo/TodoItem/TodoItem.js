@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-// import PropTypes from 'prop-types';
 
 import { Main, LeftIcon, RightIcon, Text, EditInput } from './TodoItem.styles';
 
@@ -100,17 +99,5 @@ class TodoItem extends React.Component<Props, State> {
     return content;
   }
 }
-
-// TodoItem.propTypes = {
-//   id: PropTypes.number.isRequired,
-//   text: PropTypes.string.isRequired,
-//   completed: PropTypes.bool.isRequired,
-//   isEdited: PropTypes.bool.isRequired,
-//   editMode: PropTypes.func.isRequired,
-//   saveUpdate: PropTypes.func.isRequired,
-//   cancelUpdate: PropTypes.func.isRequired,
-//   toggle: PropTypes.func.isRequired,
-//   delete: PropTypes.func.isRequired,
-// };
 
 export default TodoItem;

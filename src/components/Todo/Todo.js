@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-// import PropsTypes from 'prop-types';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import * as actionCreators from '../../store/actions';
@@ -17,8 +16,8 @@ type Props = {
   onTodoStopEditing: (ind: number) => void,
   onUpdateItem: (ind: number, text: string) => void,
   onDeleteItem: (ind: number) => void,
-  onCreateItem: void => void,
-  onRemoveAllItems: void => void,
+  onCreateItem: (void) => void,
+  onRemoveAllItems: (void) => void,
 }
 
 type State = {
@@ -32,18 +31,18 @@ class Todo extends React.Component<Props, State> {
     listTitleEdited: false,
   };
 
-  handleChangeListTitle = (e) => {
+  handleChangeListTitle = (e: SyntheticEvent<>) => {
     this.setState(() => ({ listTitleEdited: true }));
   };
 
-  handleUpdateHeader = (e) => {
-    const updatedListTitle = e.target.value;
+  handleUpdateHeader = (e: SyntheticKeyboardEvent<HTMLInputElement>) => {
+    const updatedListTitle = e.currentTarget.value;
     this.setState(() => ({ listTitle: updatedListTitle }));
   };
 
-  handleKeyDown = (e) => {
+  handleKeyDown = (e: SyntheticKeyboardEvent<HTMLInputElement>) => {
     const keyPressed = e.keyCode;
-    const updateListTitle = e.target.value;
+    const updateListTitle = e.currentTarget.value;
 
     if (keyPressed === 13) {
       this.setState(() => ({
@@ -113,17 +112,6 @@ class Todo extends React.Component<Props, State> {
     );
   }
 }
-
-// Todo.propTypes = {
-//   todoList: PropsTypes.array.isRequired,
-//   onCreateItem: PropsTypes.func.isRequired,
-//   onToggleCompleted: PropsTypes.func.isRequired,
-//   onTodoStopEditing: PropsTypes.func.isRequired,
-//   onRemoveAllItems: PropsTypes.func.isRequired,
-//   onTodoStartEditing: PropsTypes.func.isRequired,
-//   onUpdateItem: PropsTypes.func.isRequired,
-//   onDeleteItem: PropsTypes.func.isRequired,
-// };
 
 const mapStateToProps = (state) => {
   return {
