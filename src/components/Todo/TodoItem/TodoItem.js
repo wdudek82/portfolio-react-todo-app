@@ -9,10 +9,10 @@ type Props = {
   completed: boolean,
   isEdited: boolean,
   saveUpdate: (id: number, text: string) => void,
-  cancelUpdate: void => void,
-  editMode: void => void,
-  toggle: void => void,
-  delete: void => void,
+  cancelUpdate: (void) => void,
+  editMode: (void) => void,
+  toggle: (void) => void,
+  delete: (void) => void,
 }
 
 type State = {
@@ -30,17 +30,17 @@ class TodoItem extends React.Component<Props, State> {
 
   editInput: ?HTMLInputElement;
 
-  handleEditTodo = (e: Object) => {
-    const newText = e.target.value;
+  handleEditTodo = (e: SyntheticKeyboardEvent<HTMLInputElement>) => {
+    const newText = e.currentTarget.value;
     this.setState(() => ({ text: newText }));
   };
 
-  handleEditMode = (e: Object) => {
+  handleEditMode = (e: SyntheticMouseEvent<>) => {
     this.props.editMode();
     this.setState(() => ({ text: this.props.text }));
   };
 
-  handleKeyDown = (e: Object) => {
+  handleKeyDown = (e: SyntheticKeyboardEvent<>) => {
     const keyPressed = e.keyCode;
 
     if (keyPressed === 13) {
