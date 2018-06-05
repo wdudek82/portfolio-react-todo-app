@@ -1,5 +1,6 @@
+// @flow
 import React from 'react';
-import PropsTypes from 'prop-types';
+// import PropsTypes from 'prop-types';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import * as actionCreators from '../../store/actions';
@@ -9,7 +10,23 @@ import TodoForm from './TodoForm/TodoForm';
 import Button from '../UI/Button/Button';
 import { Container, P, H1, HeaderInput } from './Todo.styles';
 
-class Todo extends React.Component {
+type Props = {
+  todoList: Array<Object>,
+  onToggleCompleted: (ind: number) => void,
+  onTodoStartEditing: (ind: number, text: string) => void,
+  onTodoStopEditing: (ind: number) => void,
+  onUpdateItem: (ind: number, text: string) => void,
+  onDeleteItem: (ind: number) => void,
+  onCreateItem: void => void,
+  onRemoveAllItems: void => void,
+}
+
+type State = {
+  listTitle: string,
+  listTitleEdited: boolean,
+}
+
+class Todo extends React.Component<Props, State> {
   state = {
     listTitle: 'Sandbox TODO List',
     listTitleEdited: false,
@@ -64,8 +81,6 @@ class Todo extends React.Component {
       );
     }
 
-    // FIXME: todoList inside todoList object - thats stupid
-    // convert todo state to array of todos
     const todoList = this.props.todoList.map((todoItem, ind) => {
       return (
         <TodoItem
@@ -99,16 +114,16 @@ class Todo extends React.Component {
   }
 }
 
-Todo.propTypes = {
-  todoList: PropsTypes.array.isRequired,
-  onCreateItem: PropsTypes.func.isRequired,
-  onToggleCompleted: PropsTypes.func.isRequired,
-  onTodoStopEditing: PropsTypes.func.isRequired,
-  onRemoveAllItems: PropsTypes.func.isRequired,
-  onTodoStartEditing: PropsTypes.func.isRequired,
-  onUpdateItem: PropsTypes.func.isRequired,
-  onDeleteItem: PropsTypes.func.isRequired,
-};
+// Todo.propTypes = {
+//   todoList: PropsTypes.array.isRequired,
+//   onCreateItem: PropsTypes.func.isRequired,
+//   onToggleCompleted: PropsTypes.func.isRequired,
+//   onTodoStopEditing: PropsTypes.func.isRequired,
+//   onRemoveAllItems: PropsTypes.func.isRequired,
+//   onTodoStartEditing: PropsTypes.func.isRequired,
+//   onUpdateItem: PropsTypes.func.isRequired,
+//   onDeleteItem: PropsTypes.func.isRequired,
+// };
 
 const mapStateToProps = (state) => {
   return {

@@ -1,39 +1,47 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import { Main, LeftIcon, RightIcon, Text, EditInput } from './TodoItem.styles';
 
-class TodoItem extends React.Component {
-  constructor(props) {
+type Props = {
+  id: number,
+  text: string,
+  completed: boolean,
+  isEdited: boolean,
+  saveUpdate: (id: number, text: string) => void,
+  cancelUpdate: void => void,
+  editMode: void => void,
+  toggle: void => void,
+  delete: void => void,
+}
+
+type State = {
+  text: string,
+}
+
+class TodoItem extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       text: this.props.text,
     };
-    // this.editInutRef = React.createRef();
     this.editInput = null;
   }
 
-  // componentDidMount() {
-  //   console.log(this.editInutRef);
-  //   if (this.editInput) {
-  //     console.log(this.editInput);
-  //     // console.log(this.editInput.getDOMNode());
-  //     this.editInput.focus();
-  //     // console.log(this.editInutRef.focus());
-  //   }
-  // }
+  editInput: ?HTMLInputElement;
 
-  handleEditTodo = (e) => {
+  handleEditTodo = (e: Object) => {
     const newText = e.target.value;
     this.setState(() => ({ text: newText }));
   };
 
-  handleEditMode = (e) => {
+  handleEditMode = (e: Object) => {
     this.props.editMode();
     this.setState(() => ({ text: this.props.text }));
   };
 
-  handleKeyDown = (e) => {
+  handleKeyDown = (e: Object) => {
     const keyPressed = e.keyCode;
 
     if (keyPressed === 13) {
@@ -93,16 +101,16 @@ class TodoItem extends React.Component {
   }
 }
 
-TodoItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  text: PropTypes.string.isRequired,
-  completed: PropTypes.bool.isRequired,
-  isEdited: PropTypes.bool.isRequired,
-  editMode: PropTypes.func.isRequired,
-  saveUpdate: PropTypes.func.isRequired,
-  cancelUpdate: PropTypes.func.isRequired,
-  toggle: PropTypes.func.isRequired,
-  delete: PropTypes.func.isRequired,
-};
+// TodoItem.propTypes = {
+//   id: PropTypes.number.isRequired,
+//   text: PropTypes.string.isRequired,
+//   completed: PropTypes.bool.isRequired,
+//   isEdited: PropTypes.bool.isRequired,
+//   editMode: PropTypes.func.isRequired,
+//   saveUpdate: PropTypes.func.isRequired,
+//   cancelUpdate: PropTypes.func.isRequired,
+//   toggle: PropTypes.func.isRequired,
+//   delete: PropTypes.func.isRequired,
+// };
 
 export default TodoItem;

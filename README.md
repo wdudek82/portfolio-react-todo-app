@@ -11,7 +11,7 @@
 5. Lodash
 6. CSS in JS (styled-components)
 7. ESLint + airbnb config
-8. ~~Flow typechecking~~
+8. Flow typechecking
 
 ### :bug: BUGS
 
