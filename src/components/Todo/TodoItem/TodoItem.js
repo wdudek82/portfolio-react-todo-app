@@ -25,7 +25,6 @@ class TodoItem extends React.Component<Props, State> {
     this.state = {
       text: this.props.text,
     };
-    // this.editInput = null;
   }
 
   editInput: ?HTMLInputElement;
@@ -76,10 +75,12 @@ class TodoItem extends React.Component<Props, State> {
       content = (
         <Main>
           <LeftIcon
-            onClick={this.props.cancelUpdate}
+            onClick={() =>
+              this.props.saveUpdate(this.props.id, this.state.text)
+            }
             edited={this.props.isEdited}
           >
-            <i className="fas fa-ban" />
+            <i className="far fa-check-circle" />
           </LeftIcon>
           <EditInput
             ref={(input) => {
@@ -92,12 +93,10 @@ class TodoItem extends React.Component<Props, State> {
             onBlur={this.props.cancelUpdate}
           />
           <RightIcon
-            onClick={() =>
-              this.props.saveUpdate(this.props.id, this.state.text)
-            }
+            onClick={this.props.cancelUpdate}
             edited={this.props.isEdited}
           >
-            <i className="far fa-check-circle" />
+            <i className="fas fa-ban" />
           </RightIcon>
         </Main>
       );

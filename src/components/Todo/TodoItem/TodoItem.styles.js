@@ -30,7 +30,7 @@ export const LeftIcon = Container.extend`
     if (props.completed) {
       return '#bbb';
     } else if (props.edited) {
-      return '#b60505';
+      return '#036a03';
     }
     return 'black';
   }};
@@ -52,7 +52,7 @@ export const RightIcon = Container.extend`
   padding: 0 1rem 0 0;
 
   i {
-    color: ${(props) => (props.edited ? '#036a03' : '#333')};
+    color: ${(props) => (props.edited ? '#b60505' : '#333')};
 
     :hover {
       cursor: pointer;
