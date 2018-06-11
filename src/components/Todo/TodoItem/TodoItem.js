@@ -13,11 +13,11 @@ type Props = {
   editMode: (void) => void,
   toggle: (void) => void,
   delete: (void) => void,
-}
+};
 
 type State = {
   text: string,
-}
+};
 
 class TodoItem extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -53,13 +53,17 @@ class TodoItem extends React.Component<Props, State> {
   render() {
     let content = (
       <Main>
-        <LeftIcon
-          onClick={this.handleEditMode}
+        <LeftIcon onClick={this.props.toggle} completed={this.props.completed}>
+          {this.props.completed ? (
+            <i className="far fa-check-square" />
+          ) : (
+            <i className="far fa-square" />
+          )}
+        </LeftIcon>
+        <Text
+          onDoubleClick={this.handleEditMode}
           completed={this.props.completed}
         >
-          <i className="fas fa-pencil-alt" />
-        </LeftIcon>
-        <Text onClick={this.props.toggle} completed={this.props.completed}>
           {this.props.text}
         </Text>
         <RightIcon onClick={this.props.delete}>
@@ -78,7 +82,9 @@ class TodoItem extends React.Component<Props, State> {
             <i className="fas fa-ban" />
           </LeftIcon>
           <EditInput
-            ref={(input) => { this.editInput = input; }}
+            ref={(input) => {
+              this.editInput = input;
+            }}
             type="text"
             value={this.state.text}
             onChange={this.handleEditTodo}
