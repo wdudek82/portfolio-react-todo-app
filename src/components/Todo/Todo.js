@@ -7,6 +7,7 @@ import * as actionCreators from '../../store/actions';
 import TodoItem from './TodoItem/TodoItem';
 import TodoForm from './TodoForm/TodoForm';
 import Button from '../UI/Button/Button';
+import Filter from '../UI/Filter/Filter';
 import { Container, P, H1, HeaderInput } from './Todo.styles';
 
 type Props = {
@@ -18,17 +19,21 @@ type Props = {
   onDeleteItem: (ind: number) => void,
   onCreateItem: (void) => void,
   onRemoveAllItems: (void) => void,
-}
+};
 
 type State = {
   listTitle: string,
   listTitleEdited: boolean,
-}
+  filters: Array<string>,
+  activeFilter: string,
+};
 
 class Todo extends React.Component<Props, State> {
   state = {
     listTitle: 'Sandbox TODO List',
     listTitleEdited: false,
+    filters: ['all', 'completed', 'not completed'],
+    activeFilter: 'all',
   };
 
   handleChangeListTitle = (e: SyntheticEvent<>) => {
@@ -52,6 +57,13 @@ class Todo extends React.Component<Props, State> {
     } else if (keyPressed === 27) {
       this.setState(() => ({ listTitleEdited: false }));
     }
+  };
+
+  handleSelectFilter = (e: SyntheticKeyboardEvent<HTMLSelectElement>) => {
+    const activeFilter = e.currentTarget.value;
+    this.setState(() => ({ activeFilter }));
+
+    console.log(activeFilter);
   };
 
   render() {
@@ -94,13 +106,16 @@ class Todo extends React.Component<Props, State> {
           saveUpdate={this.props.onUpdateItem}
           delete={() => this.props.onDeleteItem(ind)}
         />
-
       );
     });
     return (
       <Container>
-        <H1>{headerContent}</H1>
+        <H1 onDoubleClick={this.handleChangeListTitle}>{headerContent}</H1>
         <TodoForm addItem={this.props.onCreateItem} />
+        <Filter
+          options={this.state.filters}
+          selected={this.handleSelectFilter}
+        />
         {todoList.length > 0 ? todoList : <P>List is empty</P>}
         <Button
           text="Remove All"
@@ -135,4 +150,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Todo);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Todo);

@@ -1,27 +1,16 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import { InputField } from './Input.styles';
 
-export const InputFieldCSS = css`
-  flex: 1;
-  border: none;
-  border-bottom: 1px solid #bbb;
-  padding: 0.7rem;
-  height: 2.05rem;
-  outline: none;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
+type Props = {
+  name: string,
+  type: string,
+  value: ?string,
+  placeholder: ?string,
+  changed: (void) => void,
+}
 
-  :focus {
-    border-bottom: 1px solid #333;
-  }
-`;
-
-export const InputField = styled.input`
-  ${InputFieldCSS};
-`;
-
-const input = (props) => (
+const input = (props: Props) => (
   <InputField
     name={props.name}
     type={props.type}
@@ -30,18 +19,5 @@ const input = (props) => (
     onChange={props.changed}
   />
 );
-
-input.defaultProps = {
-  value: '',
-  placeholder: '',
-};
-
-input.propTypes = {
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  placeholder: PropTypes.string,
-  changed: PropTypes.func.isRequired,
-};
 
 export default input;

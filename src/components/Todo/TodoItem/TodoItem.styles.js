@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { InputFieldCSS } from '../../UI/Input/Input';
+import { InputFieldCSS } from '../../UI/Input/Input.styles';
 
 export const Container = styled.div`
   display: flex;
@@ -34,6 +34,10 @@ export const LeftIcon = Container.extend`
     }
     return 'black';
   }};
+
+    :hover {
+      font-weight: bold;
+    }
   }
 `;
 
@@ -58,7 +62,8 @@ export const RightIcon = Container.extend`
 `;
 
 export const EditInput = styled.input`
-  ${InputFieldCSS} background: #fbffac;
+  ${InputFieldCSS}
+  background: #fbffac;
   height: 19px;
   padding: 0;
   margin: 1rem;

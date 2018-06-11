@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { InputFieldCSS } from '../UI/Input/Input';
+import { InputFieldCSS } from '../UI/Input/Input.styles';
 
 export const Container = styled.div`
   background: white;
@@ -55,7 +55,8 @@ export const H1 = styled.h1`
 `;
 
 export const HeaderInput = styled.input`
-  ${InputFieldCSS} background: #fbffac;
+  ${InputFieldCSS}
+  background: #fbffac;
   font-size: 2rem;
   font-weight: 300;
   margin: 0 1rem;
