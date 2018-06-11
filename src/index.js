@@ -6,8 +6,15 @@ import { injectGlobal } from 'styled-components';
 import globalStyles from './Main.styles';
 import Root from './Root';
 import App from './components/App';
-
 import registerServiceWorker from './registerServiceWorker';
+
+
+/* eslint-disable global-require */
+if (process.env.NODE_ENV !== 'production') {
+  const { whyDidYouUpdate } = require('why-did-you-update');
+  whyDidYouUpdate(React);
+}
+/* eslint-enable global-require */
 
 injectGlobal`${globalStyles}`;
 

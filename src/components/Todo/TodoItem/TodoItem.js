@@ -25,7 +25,7 @@ class TodoItem extends React.Component<Props, State> {
     this.state = {
       text: this.props.text,
     };
-    this.editInput = null;
+    // this.editInput = null;
   }
 
   editInput: ?HTMLInputElement;

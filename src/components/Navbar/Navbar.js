@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import Clock from '../Miscellaneous/Clock/Clock';
 
 const Nav = styled.nav`
   display: flex;
@@ -14,12 +15,16 @@ const Nav = styled.nav`
 const Brand = styled.div`
   color: white;
   font-weight: 700;
+  width: 232px;
 `;
 
 const RightMenu = styled.div`
-  display: flex;
+  display: none;
+  width: 232px;
 
-  @media (min-width: 480px) {
+  @media (min-width: 600px) {
+    display: flex;
+
     p {
       margin: 0 1rem;
     }
@@ -34,6 +39,7 @@ const RightMenu = styled.div`
 const navbar = (props) => (
   <Nav>
     <Brand>ToDo App</Brand>
+    <Clock />
     <RightMenu>
       <p>
         <NavLink to="/" exact>Home</NavLink>
