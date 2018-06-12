@@ -64,6 +64,35 @@ class Todo extends React.Component<Props, State> {
     this.setState(() => ({ activeFilter }));
   };
 
+  renderTodoList = () => {
+    const todoList = this.props.todoList
+      .sort((todoItem) => todoItem.completed)
+      .filter((todoItem) => {
+        const filter = this.state.activeFilter;
+        if (filter === 'completed') {
+          return todoItem.completed;
+        } else if (filter === 'not completed') {
+          return !todoItem.completed;
+        }
+        return todoItem;
+      })
+      .map((todoItem, ind) => (
+        <TodoItem
+          key={`${_.uniqueId(todoItem.text)}`}
+          id={ind}
+          text={todoItem.text}
+          completed={todoItem.completed}
+          toggle={() => this.props.onToggleCompleted(ind)}
+          editMode={() => this.props.onTodoStartEditing(ind, todoItem.text)}
+          isEdited={todoItem.edited}
+          cancelUpdate={() => this.props.onTodoStopEditing(ind)}
+          saveUpdate={this.props.onUpdateItem}
+          delete={() => this.props.onDeleteItem(ind)}
+        />
+      ));
+    return todoList.length ? todoList : <P>List is empty</P>;
+  };
+
   render() {
     let headerContent = (
       <React.Fragment>
@@ -90,32 +119,6 @@ class Todo extends React.Component<Props, State> {
       );
     }
 
-    const todoList = this.props.todoList
-      .sort((todoItem) => todoItem.completed)
-      .filter((todoItem) => {
-        const filter = this.state.activeFilter;
-        if (filter === 'completed') {
-          return todoItem.completed;
-        } else if (filter === 'not completed') {
-          return !todoItem.completed;
-        }
-        return todoItem;
-      })
-      .map((todoItem, ind) => (
-        <TodoItem
-          key={`${_.uniqueId(todoItem.text)}`}
-          id={ind}
-          text={todoItem.text}
-          completed={todoItem.completed}
-          toggle={() => this.props.onToggleCompleted(ind)}
-          editMode={() => this.props.onTodoStartEditing(ind, todoItem.text)}
-          isEdited={todoItem.edited}
-          cancelUpdate={() => this.props.onTodoStopEditing(ind)}
-          saveUpdate={this.props.onUpdateItem}
-          delete={() => this.props.onDeleteItem(ind)}
-        />
-      ));
-
     return (
       <Container>
         <H1 onDoubleClick={this.handleChangeListTitle}>{headerContent}</H1>
@@ -124,7 +127,7 @@ class Todo extends React.Component<Props, State> {
           options={this.state.filters}
           selected={this.handleSelectFilter}
         />
-        {todoList.length > 0 ? todoList : <P>List is empty</P>}
+        {this.renderTodoList()}
         <Button
           text="Remove All"
           disabled={this.props.todoList.length === 0}

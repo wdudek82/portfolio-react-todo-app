@@ -1,13 +1,18 @@
 // @flow
 import React from 'react';
 
-import { Main, LeftIcon, RightIcon, Text, EditInput } from './TodoItem.styles';
+import CheckIcon from '../../UI/Icons/CheckIcon/CheckIcon';
+import DeleteIcon from '../../UI/Icons/DeleteIcon/DeleteIcon';
+import CancelIcon from '../../UI/Icons/CancelIcon/CancelIcon';
+import ApplyIcon from '../../UI/Icons/ApplyIcon/ApplyIcon';
+
+import { Main, Text, EditInput } from './TodoItem.styles';
 
 type Props = {
-  id: number,
-  text: string,
   completed: boolean,
+  id: number,
   isEdited: boolean,
+  text: string,
   saveUpdate: (id: number, text: string) => void,
   cancelUpdate: (void) => void,
   editMode: (void) => void,
@@ -52,36 +57,27 @@ class TodoItem extends React.Component<Props, State> {
   render() {
     let content = (
       <Main>
-        <LeftIcon onClick={this.props.toggle} completed={this.props.completed}>
-          {this.props.completed ? (
-            <i className="far fa-check-square" />
-          ) : (
-            <i className="far fa-square" />
-          )}
-        </LeftIcon>
+        <CheckIcon
+          toggle={this.props.toggle}
+          completed={this.props.completed}
+        />
         <Text
           onDoubleClick={this.handleEditMode}
           completed={this.props.completed}
         >
           {this.props.text}
         </Text>
-        <RightIcon onClick={this.props.delete}>
-          <i className="far fa-times-circle" />
-        </RightIcon>
+        <DeleteIcon delete={this.props.delete} />
       </Main>
     );
 
     if (this.props.isEdited) {
       content = (
         <Main>
-          <LeftIcon
-            onClick={() =>
-              this.props.saveUpdate(this.props.id, this.state.text)
-            }
-            edited={this.props.isEdited}
-          >
-            <i className="far fa-check-circle" />
-          </LeftIcon>
+          <ApplyIcon
+            save={() => this.props.saveUpdate(this.props.id, this.state.text)}
+            isEdited={this.props.isEdited}
+          />
           <EditInput
             ref={(input) => {
               this.editInput = input;
@@ -92,12 +88,10 @@ class TodoItem extends React.Component<Props, State> {
             onKeyDown={this.handleKeyDown}
             onBlur={this.props.cancelUpdate}
           />
-          <RightIcon
-            onClick={this.props.cancelUpdate}
-            edited={this.props.isEdited}
-          >
-            <i className="fas fa-ban" />
-          </RightIcon>
+          <CancelIcon
+            cancelUpdate={this.props.cancelUpdate}
+            isEdited={this.props.isEdited}
+          />
         </Main>
       );
     }

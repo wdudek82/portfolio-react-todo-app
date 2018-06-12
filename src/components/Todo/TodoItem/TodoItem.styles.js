@@ -21,26 +21,6 @@ export const Main = Container.extend`
   }
 `;
 
-export const LeftIcon = Container.extend`
-  padding: 0 0 0 1rem;
-  cursor: ${(props) => (props.completed ? 'default' : 'pointer')};
-
-  i {
-    color: ${(props) => {
-    if (props.completed) {
-      return '#bbb';
-    } else if (props.edited) {
-      return '#036a03';
-    }
-    return 'black';
-  }};
-
-    :hover {
-      font-weight: bold;
-    }
-  }
-`;
-
 export const Text = Container.extend`
   color: ${(props) => (props.completed ? '#bbb' : '#333')};
   text-decoration: ${(props) => (props.completed ? 'line-through' : 'none')};

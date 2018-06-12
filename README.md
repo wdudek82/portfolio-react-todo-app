@@ -16,6 +16,7 @@
 ### :bug: BUGS
 
 * [ ] auto-focus on dynamic inputs
+* [ ] id doesn't correspond with item's position on list after sorting by completion status
 
 ### :pencil2: TODO
 
