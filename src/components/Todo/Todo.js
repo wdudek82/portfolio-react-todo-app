@@ -62,8 +62,6 @@ class Todo extends React.Component<Props, State> {
   handleSelectFilter = (e: SyntheticKeyboardEvent<HTMLSelectElement>) => {
     const activeFilter = e.currentTarget.value;
     this.setState(() => ({ activeFilter }));
-
-    console.log(activeFilter);
   };
 
   render() {
@@ -92,8 +90,18 @@ class Todo extends React.Component<Props, State> {
       );
     }
 
-    const todoList = this.props.todoList.map((todoItem, ind) => {
-      return (
+    const todoList = this.props.todoList
+      .sort((todoItem) => todoItem.completed)
+      .filter((todoItem) => {
+        const filter = this.state.activeFilter;
+        if (filter === 'completed') {
+          return todoItem.completed;
+        } else if (filter === 'not completed') {
+          return !todoItem.completed;
+        }
+        return todoItem;
+      })
+      .map((todoItem, ind) => (
         <TodoItem
           key={`${_.uniqueId(todoItem.text)}`}
           id={ind}
@@ -106,8 +114,8 @@ class Todo extends React.Component<Props, State> {
           saveUpdate={this.props.onUpdateItem}
           delete={() => this.props.onDeleteItem(ind)}
         />
-      );
-    });
+      ));
+
     return (
       <Container>
         <H1 onDoubleClick={this.handleChangeListTitle}>{headerContent}</H1>
