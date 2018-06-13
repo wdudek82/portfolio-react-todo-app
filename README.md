@@ -2,7 +2,7 @@
 
 ## ToDo App On Steroids :syringe:
 
-### :tada: Hosted (DigitalOcean VPS)
+### :tada: Hosted (VPS on DigitalOcean)
 
 http://167.99.215.196:3000/
 
