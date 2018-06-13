@@ -30,11 +30,12 @@
 * [x] Event handler for removing all todo items
 * [x] Sandbox Component grew quite big, so now it would be the right moment to refator it, and split it
 * [x] Adding routing using React Router
+* [x] Items marked as completed go to bottom of the list/go to separate "completed" (foldable?) list
+* [x] Items filters
 * [ ] Fading effect on todo item delete
-* [ ] Items marked as completed go to bottom of the list/go to separate "completed" foldable list
 * [ ] Move Todo header state to store
+* [ ] Move filters state to store (create separate reducer and actions)
 * [ ] Add cancel/accept icons to header input
-* [ ] Items filters
 * [ ] Mark all as completed
 * [ ] Form validation + error messages
 * [ ] Make it fully responsive (RWD)

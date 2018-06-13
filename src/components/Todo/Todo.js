@@ -11,11 +11,6 @@ import { Container, P, H1, HeaderInput } from './Todo.styles';
 
 type Props = {
   todoList: Array<Object>,
-  onToggleCompleted: (number) => void,
-  onTodoStartEditing: (number, string) => void,
-  onTodoStopEditing: (number) => void,
-  onUpdateItem: (number, string) => void,
-  onDeleteItem: (number) => void,
   onCreateItem: (string) => void,
   onRemoveAllItems: (void) => void,
 };
@@ -142,16 +137,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onCreateItem: (text) => dispatch(actionCreators.createTodoItem(text)),
-    onUpdateItem: (itemId, newText) =>
-      dispatch(actionCreators.updateTodoItem(itemId, newText)),
-    onDeleteItem: (itemId) => dispatch(actionCreators.deleteTodoItem(itemId)),
     onRemoveAllItems: () => dispatch(actionCreators.removeAllTodoItems()),
-    onToggleCompleted: (itemId) =>
-      dispatch(actionCreators.toggleTodoCompleted(itemId)),
-    onTodoStartEditing: (itemId) =>
-      dispatch(actionCreators.startEditing(itemId)),
-    onTodoStopEditing: (itemId) =>
-      dispatch(actionCreators.cancelEditing(itemId)),
   };
 };
 
