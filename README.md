@@ -2,7 +2,7 @@
 
 ## ToDo App On Steroids :syringe:
 
-### :tada: Hosted
+### :tada: Hosted (DigitalOcean VPS)
 
 http://167.99.215.196:3000/
 
@@ -21,6 +21,7 @@ http://167.99.215.196:3000/
 ### :bug: BUGS
 
 * [ ] auto-focus on dynamic inputs
+* [ ] switch paddings to margins in todo item icons (now we can e.g. delete item by clicking the padded space)
 
 ### :pencil2: TODO
 
