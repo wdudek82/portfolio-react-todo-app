@@ -5,6 +5,6 @@ export {
   deleteTodoItem,
   removeAllTodoItems,
   toggleTodoCompleted,
-  setTodoStartEditing,
-  setTodoStopEditing
+  startEditing,
+  cancelEditing,
 } from './todoActions';

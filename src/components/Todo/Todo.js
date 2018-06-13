@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import * as actionCreators from '../../store/actions';
 
 import TodoItem from './TodoItem/TodoItem';
@@ -12,12 +11,12 @@ import { Container, P, H1, HeaderInput } from './Todo.styles';
 
 type Props = {
   todoList: Array<Object>,
-  onToggleCompleted: (ind: number) => void,
-  onTodoStartEditing: (ind: number, text: string) => void,
-  onTodoStopEditing: (ind: number) => void,
-  onUpdateItem: (ind: number, text: string) => void,
-  onDeleteItem: (ind: number) => void,
-  onCreateItem: (void) => void,
+  onToggleCompleted: (number) => void,
+  onTodoStartEditing: (number, string) => void,
+  onTodoStopEditing: (number) => void,
+  onUpdateItem: (number, string) => void,
+  onDeleteItem: (number) => void,
+  onCreateItem: (string) => void,
   onRemoveAllItems: (void) => void,
 };
 
@@ -76,18 +75,13 @@ class Todo extends React.Component<Props, State> {
         }
         return todoItem;
       })
-      .map((todoItem, ind) => (
+      .map(({ id, text, completed, edited }) => (
         <TodoItem
-          key={`${_.uniqueId(todoItem.text)}`}
-          id={ind}
-          text={todoItem.text}
-          completed={todoItem.completed}
-          toggle={() => this.props.onToggleCompleted(ind)}
-          editMode={() => this.props.onTodoStartEditing(ind, todoItem.text)}
-          isEdited={todoItem.edited}
-          cancelUpdate={() => this.props.onTodoStopEditing(ind)}
-          saveUpdate={this.props.onUpdateItem}
-          delete={() => this.props.onDeleteItem(ind)}
+          key={id}
+          id={id}
+          text={text}
+          completed={completed}
+          isEdited={edited}
         />
       ));
     return todoList.length ? todoList : <P>List is empty</P>;
@@ -155,9 +149,9 @@ const mapDispatchToProps = (dispatch) => {
     onToggleCompleted: (itemId) =>
       dispatch(actionCreators.toggleTodoCompleted(itemId)),
     onTodoStartEditing: (itemId) =>
-      dispatch(actionCreators.setTodoStartEditing(itemId)),
+      dispatch(actionCreators.startEditing(itemId)),
     onTodoStopEditing: (itemId) =>
-      dispatch(actionCreators.setTodoStopEditing(itemId)),
+      dispatch(actionCreators.cancelEditing(itemId)),
   };
 };
 

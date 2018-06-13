@@ -1,11 +1,6 @@
 module.exports = {
-  extends: [
-    'react-app',
-    'airbnb',
-  ],
-  plugins: [
-    'babel',
-  ],
+  extends: ['react-app', 'airbnb'],
+  plugins: ['babel'],
   parser: 'babel-eslint',
   env: {
     browser: true,
@@ -54,7 +49,8 @@ module.exports = {
         caughtErrors: 'all',
       },
     ],
-    'no-unused-expressions': ["error", { "allowTaggedTemplates": true }],
+    'no-unused-expressions': ['error', { allowTaggedTemplates: true }],
     'no-underscore-dangle': 0,
+    'object-curly-newline': ['error', { consistent: true }],
   },
 };

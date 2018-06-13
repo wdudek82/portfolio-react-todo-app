@@ -1,5 +1,5 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
@@ -10,17 +10,25 @@ const Form = styled.form`
   width: 300px;
 `;
 
-class TodoForm extends React.Component {
+type Props = {
+  addItem: (string) => void,
+}
+
+type State = {
+  todo: string,
+}
+
+class TodoForm extends React.Component<Props, State> {
   state = {
     todo: '',
   };
 
   handleInputChange = (e) => {
-    const todo = e.target.value;
+    const todo = e.currentTarget.value;
     this.setState(() => ({ todo }));
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = (e: SyntheticKeyboardEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     if (this.state.todo) {
@@ -44,9 +52,5 @@ class TodoForm extends React.Component {
     );
   }
 }
-
-TodoForm.propTypes = {
-  addItem: PropTypes.func.isRequired,
-};
 
 export default TodoForm;
