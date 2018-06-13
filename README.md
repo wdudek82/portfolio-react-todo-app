@@ -2,6 +2,10 @@
 
 ## ToDo App On Steroids :syringe:
 
+### :tada: Hosted
+
+http://167.99.215.196:3000/
+
 ### :wrench: Tools used
 
 1. React
