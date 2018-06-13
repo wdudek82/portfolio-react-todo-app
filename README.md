@@ -12,6 +12,7 @@
 6. CSS in JS (styled-components)
 7. ESLint + airbnb config
 8. Flow typechecking
+9. Jest, Enzyme
 
 ### :bug: BUGS
 
@@ -48,5 +49,7 @@
 * [ ] List of todo lists (ability to: add, view, and remove them)
 * [ ] Lists sharing with other users
 * [ ] Real time updates with websockets (SocketIO)
-* [ ] Jest + Enzyme test for reducers and components
+* [ ] Jest tests for reducers
+* [ ] Jest tests for actions
+* [ ] Jest + Enzyme tests for components
 * [ ] NodeJS/Express API

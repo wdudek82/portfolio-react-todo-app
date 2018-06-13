@@ -95,7 +95,6 @@ function removeAllItems(state: Object) {
 
 function toggleTodoCompleted(state, itemId) {
   const updatedTodoList = state.todoList.map((item) => {
-    console.log(item);
     let updatedItem = item;
     if (item.id === itemId) {
       updatedItem = { ...item, completed: !item.completed };

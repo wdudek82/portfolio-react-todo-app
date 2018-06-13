@@ -23,7 +23,8 @@ class TodoForm extends React.Component<Props, State> {
     todo: '',
   };
 
-  handleInputChange = (e) => {
+  // What would be the proper type? SyntheticEvent?
+  handleInputChange = (e: any) => {
     const todo = e.currentTarget.value;
     this.setState(() => ({ todo }));
   };
