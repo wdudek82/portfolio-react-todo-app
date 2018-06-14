@@ -4,7 +4,7 @@
 
 ### :tada: Hosted (VPS on DigitalOcean)
 
-http://167.99.215.196:3000/
+http://167.99.215.196
 
 ### :wrench: Tools used
 
